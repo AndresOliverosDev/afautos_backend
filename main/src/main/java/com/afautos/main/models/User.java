@@ -20,6 +20,11 @@ public class User {
     @Setter
     private String ced;
 
+    @Column(name = "pass")
+    @Getter
+    @Setter
+    private String password;
+
     @Column(name = "email")
     @Setter
     @Getter
@@ -54,9 +59,4 @@ public class User {
     @Setter
     @Getter
     private Date birthday;
-
-    @Column(name = "id_address")
-    @Setter
-    @Getter
-    private int address;
 }
