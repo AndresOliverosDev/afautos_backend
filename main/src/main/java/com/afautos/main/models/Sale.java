@@ -1,20 +1,31 @@
 package com.afautos.main.models;
 
+import java.sql.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "sales")
 public class Sale {
 
     @Column(name = "id_sale")
     @Id
-    @GenerateValue(strategy = .IDENTIFY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private int idSale;
+    private Integer idSale;
 
     @Column(name = "date_order")
     @Getter
     @Setter
-    private Date dateOrder
+    private Date dateOrder;
 
     @Column(name = "pay_method")
     @Getter
@@ -26,8 +37,9 @@ public class Sale {
     @Setter
     private String customer;
 
-    @Column(name = "id_addr")
+    @Column(name = "address")
     @Getter
     @Setter
-    private int address;
+    private Integer address;
+
 }

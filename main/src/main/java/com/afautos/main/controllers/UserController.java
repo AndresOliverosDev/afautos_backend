@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.afautos.main.models.User;
 import com.afautos.main.services.UserService;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 public class UserController {
@@ -17,4 +19,10 @@ public class UserController {
     public User getByIdUser(@PathVariable String id) {
         return userService.getByIdUser(id);
     }
+
+    @PostMapping("/addUser")
+    public User addUser(@RequestBody User user) {
+        return userService.addUser(user);
+    }
+    
 }

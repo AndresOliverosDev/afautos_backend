@@ -1,6 +1,7 @@
 package com.afautos.main.models;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Table(name = "users")
 public class User {
 
-    @Column(name = "ced_user")
+    @Column(name = "ced_user", nullable = false)
     @Id
     @Getter
     @Setter
@@ -45,11 +46,6 @@ public class User {
     @Getter
     private String lastname;
 
-    @Column(name = "rol")
-    @Setter
-    @Getter
-    private String rol;
-
     @Column(name = "doc_type")
     @Setter
     @Getter
@@ -58,5 +54,5 @@ public class User {
     @Column(name = "birthday")
     @Setter
     @Getter
-    private Date birthday;
+    private LocalDate birthday;
 }
