@@ -1,15 +1,43 @@
+DROP DATABASE afautos;
 CREATE DATABASE IF NOT EXISTS afautos;
 
 USE afautos;
 
 /*  Address */
+CREATE TABLE IF NOT EXISTS departaments (
+id_depart TINYINT AUTO_INCREMENT,
+name_depart VARCHAR(60) NOT NULL,
+
+PRIMARY KEY(id_depart)
+);
+
+CREATE TABLE IF NOT EXISTS cities (
+id_city SMALLINT AUTO_INCREMENT,
+name_city VARCHAR(60),
+depart TINYINT,
+
+PRIMARY KEY(id_city),
+CONSTRAINT fk_depart_city FOREIGN KEY(depart) REFERENCES departaments(id_depart)
+);
+
+CREATE TABLE IF NOT EXISTS neighborhoods(
+	id_neighborhood INTEGER AUTO_INCREMENT,
+    name_neighborhood VARCHAR(60),
+    city SMALLINT,
+    
+    PRIMARY KEY(id_neighborhood),
+    CONSTRAINT fk_city_neigborhood FOREIGN KEY(city) REFERENCES cities(id_city)
+);
+
 CREATE TABLE IF NOT EXISTS address (
     id_addr INTEGER AUTO_INCREMENT,
     name_address VARCHAR(30) NOT NULL,
     ref VARCHAR(100),
     city VARCHAR(20) NOT NULL,
-    neighborhood VARCHAR(40),
-    PRIMARY KEY(id_addr)
+    neighborhood INTEGER,
+    
+    PRIMARY KEY(id_addr),
+    CONSTRAINT fk_address_neighborhood FOREIGN KEY(neighborhood) REFERENCES neighborhoods(id_neighborhood)
 );
 
 /* User Rol */
