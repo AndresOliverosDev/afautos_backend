@@ -3,43 +3,6 @@ CREATE DATABASE IF NOT EXISTS afautos;
 
 USE afautos;
 
-/*  Address */
-CREATE TABLE IF NOT EXISTS departaments (
-id_depart TINYINT AUTO_INCREMENT,
-name_depart VARCHAR(60) NOT NULL,
-
-PRIMARY KEY(id_depart)
-);
-
-CREATE TABLE IF NOT EXISTS cities (
-id_city SMALLINT AUTO_INCREMENT,
-name_city VARCHAR(60),
-depart TINYINT,
-
-PRIMARY KEY(id_city),
-CONSTRAINT fk_depart_city FOREIGN KEY(depart) REFERENCES departaments(id_depart)
-);
-
-CREATE TABLE IF NOT EXISTS neighborhoods(
-	id_neighborhood INTEGER AUTO_INCREMENT,
-    name_neighborhood VARCHAR(60),
-    city SMALLINT,
-    
-    PRIMARY KEY(id_neighborhood),
-    CONSTRAINT fk_city_neigborhood FOREIGN KEY(city) REFERENCES cities(id_city)
-);
-
-CREATE TABLE IF NOT EXISTS address (
-    id_addr INTEGER AUTO_INCREMENT,
-    name_address VARCHAR(30) NOT NULL,
-    ref VARCHAR(100),
-    city VARCHAR(20) NOT NULL,
-    neighborhood INTEGER,
-    
-    PRIMARY KEY(id_addr),
-    CONSTRAINT fk_address_neighborhood FOREIGN KEY(neighborhood) REFERENCES neighborhoods(id_neighborhood)
-);
-
 /* User Rol */
 CREATE TABLE IF NOT EXISTS rol (
 	id_rol TINYINT,
@@ -71,13 +34,41 @@ CREATE TABLE IF NOT EXISTS rol_users (
     CONSTRAINT fk_user_rol FOREIGN KEY (id_user) REFERENCES users(ced_user)
 );
 
-CREATE TABLE IF NOT EXISTS users_address (
-    ced_user VARCHAR(15),
-    id_addr INTEGER,
+/*  Address */
+CREATE TABLE IF NOT EXISTS departaments (
+id_depart TINYINT AUTO_INCREMENT,		
+name_depart VARCHAR(60) NOT NULL,
 
-    CONSTRAINT fk_user_address FOREIGN KEY (ced_user) REFERENCES users(ced_user),
-    CONSTRAINT fk_address_users FOREIGN KEY (id_addr) REFERENCES address(id_addr),
-    PRIMARY KEY(ced_user,id_addr)
+PRIMARY KEY(id_depart)
+);
+
+CREATE TABLE IF NOT EXISTS cities (
+id_city SMALLINT AUTO_INCREMENT,
+name_city VARCHAR(60),
+depart TINYINT,
+
+PRIMARY KEY(id_city),
+CONSTRAINT fk_depart_city FOREIGN KEY(depart) REFERENCES departaments(id_depart)
+);
+
+CREATE TABLE IF NOT EXISTS neighborhoods(
+	id_neighborhood INTEGER AUTO_INCREMENT,
+    name_neighborhood VARCHAR(60),
+    city SMALLINT,
+    
+    PRIMARY KEY(id_neighborhood),
+    CONSTRAINT fk_city_neigborhood FOREIGN KEY(city) REFERENCES cities(id_city)
+);
+
+CREATE TABLE IF NOT EXISTS address (
+    id_addr INTEGER AUTO_INCREMENT,
+    ref VARCHAR(100),
+    neighborhood INTEGER,
+    ced_user VARCHAR(15),
+    
+    PRIMARY KEY(id_addr),
+    CONSTRAINT fk_address_neighborhood FOREIGN KEY(neighborhood) REFERENCES neighborhoods(id_neighborhood),
+    CONSTRAINT fk_address_user FOREIGN KEY(ced_user) REFERENCES users(ced_user)
 );
 
 /*  Store Process  */
