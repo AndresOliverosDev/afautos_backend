@@ -1,0 +1,18 @@
+USE afautos;
+
+/* User */
+
+/* Document Type */
+INSERT document_type(name_doc_type) VALUES("Cédula de ciudadanía");
+INSERT roles(name_rol, description) VALUES("name": "Dev Spring Boot", "desc": "Developer Java Spring Boot");
+
+/* Address */
+
+/* Departments Insert */
+INSERT departments(name_depart) VALUES("Huila");
+/* City Insert */
+INSERT cities(name_city, depart) VALUES("Isnos",1);
+/* Neighborhood Insert */
+INSERT neighborhoods(name_neighborhood, city) VALUES("Salta de Bordones",1);
+
+

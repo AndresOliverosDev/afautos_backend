@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.afautos.main.models.Address;
 import com.afautos.main.services.AddressService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +21,11 @@ public class AddressController {
     @PostMapping("/addAddress")
     public Address postMethodName(@RequestBody Address address) {
         return addressService.addAddress(address);
+    }
+
+    @PostMapping("/getAllAddress")
+    public List<Address> getAllAddress() {
+        return addressService.getAllAddress();
     }
     
 }

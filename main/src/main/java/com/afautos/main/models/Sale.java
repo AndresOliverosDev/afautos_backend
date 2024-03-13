@@ -32,7 +32,7 @@ public class Sale {
     @Setter
     private String payMethod;
 
-    @Column(name = "ced_user")
+    @Column(name = "user")
     @Getter
     @Setter
     private String customer;
