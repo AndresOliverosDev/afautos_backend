@@ -15,6 +15,7 @@ public class AddressServiceImpl implements AddressService{
     @Autowired
     AddressRepository addressRepository;
 
+    @SuppressWarnings("null")
     @Override
     public Address addAddress(Address address) {
         return addressRepository.save(address);

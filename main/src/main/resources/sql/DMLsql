@@ -4,7 +4,7 @@ USE afautos;
 
 /* Document Type */
 INSERT document_type(name_doc_type) VALUES("Cédula de ciudadanía");
-INSERT roles(name_rol, description) VALUES("name": "Dev Spring Boot", "desc": "Developer Java Spring Boot");
+INSERT roles(name_rol, description) VALUES("Dev Spring Boot","Developer Java Spring Boot");
 
 /* Address */
 
