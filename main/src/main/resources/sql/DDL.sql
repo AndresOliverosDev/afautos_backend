@@ -96,8 +96,8 @@ CREATE TABLE IF NOT EXISTS sales (
 
 CREATE TABLE IF NOT EXISTS orders (
     order_id INTEGER AUTO_INCREMENT,
-    `date` DATETIME NOT NULL,
-    `state` VARCHAR(15) NOT NULL,
+    order_date DATETIME NOT NULL,
+    order_state VARCHAR(15) NOT NULL,
     observations VARCHAR(100),
     sale INTEGER,
     employee VARCHAR(15),
