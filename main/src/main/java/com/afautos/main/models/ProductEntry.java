@@ -1,33 +1,33 @@
 package com.afautos.main.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "products_entry")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Rol {
-
+public class ProductEntry {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rol_id", nullable = false)
-    private Byte id;
+    @Column(name = "entry_id")
+    private Integer id;
 
-    @Column(name = "rol_name", nullable = false)
-    private String name;
+    @Column(name = "entry_date")
+    private LocalDateTime date;
 
-    @Column(name = "description", nullable = false)
-    private String desc;
+    @Column(name = "supplier")
+    private String supplier;
 
+    @Column(name = "observations")
+    private String observation;
 }

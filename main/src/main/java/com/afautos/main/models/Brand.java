@@ -6,28 +6,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "brands")
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Rol {
-
+public class Brand {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rol_id", nullable = false)
-    private Byte id;
+    @Column(name = "brand_id")
+    private Short id;
 
-    @Column(name = "rol_name", nullable = false)
+    @Column(name = "brand_name")
     private String name;
-
-    @Column(name = "description", nullable = false)
-    private String desc;
-
 }

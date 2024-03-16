@@ -6,28 +6,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "categories")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Rol {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rol_id", nullable = false)
+    @Column(name = "cat_id")
     private Byte id;
 
-    @Column(name = "rol_name", nullable = false)
+    @Column(name = "cat_name")
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String desc;
-
 }

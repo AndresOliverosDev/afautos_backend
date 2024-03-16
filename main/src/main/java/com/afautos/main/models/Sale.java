@@ -1,5 +1,6 @@
 package com.afautos.main.models;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -13,33 +14,28 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "sales")
+@Getter
+@Setter
 public class Sale {
 
-    @Column(name = "id_sale")
+    @Column(name = "sale_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Integer idSale;
 
-    @Column(name = "date_order")
-    @Getter
-    @Setter
+    @Column(name = "order_date")
     private Date dateOrder;
 
     @Column(name = "pay_method")
-    @Getter
-    @Setter
     private String payMethod;
 
-    @Column(name = "user")
-    @Getter
-    @Setter
+    @Column(name = "total_price")
+    private BigDecimal totalPrice;
+
+    @Column(name = "customer")
     private String customer;
 
     @Column(name = "address")
-    @Getter
-    @Setter
     private Integer address;
 
 }

@@ -3,16 +3,16 @@ USE afautos;
 /* User */
 
 /* Document Type */
-INSERT document_type(name_doc_type) VALUES("Cédula de ciudadanía");
-INSERT roles(name_rol, description) VALUES("Dev Spring Boot","Developer Java Spring Boot");
+INSERT document_type(doc_type_name) VALUES("Cédula de ciudadanía");
+INSERT roles(rol_name, description) VALUES("Dev Spring Boot","Developer Java Spring Boot");
 
 /* Address */
 
 /* Departments Insert */
-INSERT departments(name_depart) VALUES("Huila");
+INSERT departments(depart_name) VALUES("Huila");
 /* City Insert */
-INSERT cities(name_city, depart) VALUES("Isnos",1);
+INSERT cities(city_name, depart) VALUES("Isnos",1);
 /* Neighborhood Insert */
-INSERT neighborhoods(name_neighborhood, city) VALUES("Salta de Bordones",1);
+INSERT neighborhoods(neighborhood_name, city) VALUES("Salta de Bordones",1);
 
 

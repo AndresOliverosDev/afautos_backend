@@ -1,7 +1,5 @@
 package com.afautos.main.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,9 +28,4 @@ public class UserController {
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
     };
-    
-    @PostMapping("/test")
-    public User test(){
-        return userRepository.findByIdWithRol();
-    }
 }

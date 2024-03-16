@@ -2,8 +2,8 @@ DROP DATABASE afautos;
 CREATE DATABASE IF NOT EXISTS afautos;
 
 USE afautos;
-
-/* User Rol */
+		
+/* User Rol */	
 CREATE TABLE IF NOT EXISTS roles (
 	rol_id TINYINT AUTO_INCREMENT,
     rol_name VARCHAR(20),
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS order_details (
 /* Products Entry */
 CREATE TABLE IF NOT EXISTS products_entry (
     entry_id INTEGER AUTO_INCREMENT,
-    date_entry DATETIME NOT NULL,
+    entry_date DATETIME NOT NULL,
     observations VARCHAR(120),
     supplier VARCHAR(15),
     PRIMARY KEY(entry_id),
@@ -167,10 +167,11 @@ CREATE TABLE IF NOT EXISTS products_entry (
 );
 
 CREATE TABLE IF NOT EXISTS products_entry_detail (
+	detail_entry_id INTEGER AUTO_INCREMENT,
     entry INTEGER,
     product BIGINT,
     quantity SMALLINT NOT NULL,
     CONSTRAINT fk_entry_detail FOREIGN KEY(entry) REFERENCES products_entry(entry_id),
     CONSTRAINT fk_products_detail FOREIGN KEY(product) REFERENCES products(prod_id),
-    PRIMARY KEY(entry, product)
+    PRIMARY KEY(detail_entry_id)
 );
