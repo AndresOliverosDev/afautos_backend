@@ -135,14 +135,17 @@ CREATE TABLE IF NOT EXISTS products (
 
 /* Orders and sales details*/
 CREATE TABLE IF NOT EXISTS sale_details (
+    sale_detail_id BIGINT AUTO_INCREMENT,
     product BIGINT,
     sale INTEGER,
     quantity SMALLINT NOT NULL,
     price_unit DECIMAL(10, 2) NOT NULL,
     subtotal DECIMAL(10, 2) NOT NULL,
+
+    
+    PRIMARY KEY(sale_detail_id),
     CONSTRAINT fk_products FOREIGN KEY(product) REFERENCES products(prod_id),
-    CONSTRAINT fk_sales FOREIGN KEY(sale) REFERENCES sales(sale_id),
-    PRIMARY KEY(product, sale)
+    CONSTRAINT fk_sales FOREIGN KEY(sale) REFERENCES sales(sale_id)
 );
 
 CREATE TABLE IF NOT EXISTS order_details (
