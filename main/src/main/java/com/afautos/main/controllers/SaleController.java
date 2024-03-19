@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.main.models.Sale;
-import com.afautos.main.services.SaleService;
+import com.afautos.main.models.transaction.Sale;
+import com.afautos.main.services.transaction.SaleService;
+
 
 @RestController
 public class SaleController {

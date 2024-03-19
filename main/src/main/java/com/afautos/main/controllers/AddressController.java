@@ -2,8 +2,8 @@ package com.afautos.main.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.main.models.Address;
-import com.afautos.main.services.AddressService;
+import com.afautos.main.models.user.Address;
+import com.afautos.main.services.user.AddressService;
 
 import java.util.List;
 

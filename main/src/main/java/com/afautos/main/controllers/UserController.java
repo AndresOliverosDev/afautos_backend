@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.main.models.User;
-import com.afautos.main.repositories.UserRepository;
-import com.afautos.main.services.UserService;
+import com.afautos.main.models.user.User;
+import com.afautos.main.repositories.user.UserRepository;
+import com.afautos.main.services.user.UserService;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 

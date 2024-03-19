@@ -123,9 +123,10 @@ CREATE TABLE IF NOT EXISTS brands (
 CREATE TABLE IF NOT EXISTS products (
     prod_id BIGINT AUTO_INCREMENT,
     prod_name VARCHAR(30),
-    `description` VARCHAR(100),
+    `description` VARCHAR(255),
     quantity SMALLINT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
+    image_url VARCHAR(100) NOT NULL,
     cat TINYINT,
     brand SMALLINT,
     PRIMARY KEY(prod_id),
@@ -149,13 +150,15 @@ CREATE TABLE IF NOT EXISTS sale_details (
 );
 
 CREATE TABLE IF NOT EXISTS order_details (
+    order_detail_id BIGINT AUTO_INCREMENT,
     order_id INTEGER,
     product BIGINT,
-    quantity INTEGER NOT NULL,
+    quantity SMALLINT NOT NULL,
 
+    PRIMARY KEY(order_detail_id),
     CONSTRAINT fk_orders_products FOREIGN KEY(order_id) REFERENCES orders(order_id),
-    CONSTRAINT fk_products_orders FOREIGN KEY(product) REFERENCES products(prod_id),
-    PRIMARY KEY(order_id,product)
+    CONSTRAINT fk_products_orders FOREIGN KEY(product) REFERENCES products(prod_id)
+    
 
 );
 

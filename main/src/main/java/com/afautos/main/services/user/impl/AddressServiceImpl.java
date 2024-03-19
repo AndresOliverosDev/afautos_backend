@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.afautos.main.models.Address;
-import com.afautos.main.repositories.AddressRepository;
-import com.afautos.main.services.AddressService;
+import com.afautos.main.models.user.Address;
+import com.afautos.main.repositories.user.AddressRepository;
+import com.afautos.main.services.user.AddressService;
 
 @Service
 public class AddressServiceImpl implements AddressService{

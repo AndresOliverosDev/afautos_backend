@@ -7,15 +7,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "oder_details")
+@Table(name = "order_details")
 @Getter
 @Setter
 public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name =)
+    @Column(name = "order_detail_id")
     private Long id;
+
+    @Column(name = "order_id")
+    private Integer order;
+
+    @Column(name = "product")
+    private Integer product;
+
+    @Column(name = "quantity")
+    private Short quantity;
 }
