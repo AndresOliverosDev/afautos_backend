@@ -2,6 +2,8 @@ package com.afautos.main.models.product;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,6 +20,7 @@ import lombok.Setter;
 @Table(name = "products")
 @Getter
 @Setter
+@JsonIgnoreProperties("cat")
 public class Product {
 
     @Id
