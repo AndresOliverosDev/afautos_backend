@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.afautos.main.dto.ProductDTO;
 import com.afautos.main.models.product.Product;
 import com.afautos.main.repositories.product.ProductRepository;
 import com.afautos.main.services.product.ProductService;
@@ -36,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @PostMapping("URL")
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductDTO> getAllProducts() {
+        return productRepository.getAllProducts();
     }
 
     @Override

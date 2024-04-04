@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.afautos.main.dto.ProductDTO;
 import com.afautos.main.models.product.Product;
 
 @Service
@@ -15,7 +16,7 @@ public interface ProductService {
 
     String updateProduct(Long id, Product product);
 
-    List<Product> getAllProducts();
+    List<ProductDTO> getAllProducts();
 
     Product getByIdProduct(Long id);
 
