@@ -11,6 +11,6 @@ import com.afautos.main.models.user.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
-    @Query("SELECT new com.afautos.main.dto.user.UserDTO(u.id, u.email, u.phone, u.names, u.lastname, u.birthday, u.docType.name, a.ref) FROM User u JOIN u.address a")
+    @Query("SELECT new com.afautos.main.dto.user.UserDTO(u.id, u.email, u.phone, u.names, u.lastname, u.birthday, u.docType.name) FROM User u")
     List<UserDTO> getAllUser();
 }
