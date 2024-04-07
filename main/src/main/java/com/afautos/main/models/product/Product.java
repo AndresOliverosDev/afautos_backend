@@ -24,26 +24,27 @@ public class Product {
     @Column(name = "prod_id")
     private Long id;
 
-    @Column(name = "prod_name")
+    @Column(name = "prod_name", nullable = false)
     private String name;
 
     @Column(name = "description")
     private String desc;
 
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     private Short quantity;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
     @Column(name = "image_url")
     private String imageUrl;
 
     @ManyToOne()
-    @JoinColumn(name = "cat")
+    @JoinColumn(name = "cat", nullable = false)
     private Category cat;
 
-    @Column(name = "brand")
-    private Short brand;
+    @ManyToOne()
+    @JoinColumn(name = "brand", nullable = false)
+    private Brand brand;
 
 }

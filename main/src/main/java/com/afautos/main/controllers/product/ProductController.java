@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.main.dto.ProductDTO;
+import com.afautos.main.dto.product.ProductDTO;
 import com.afautos.main.models.product.Product;
 import com.afautos.main.services.product.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;

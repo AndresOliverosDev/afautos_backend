@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.afautos.main.dto.ProductDTO;
+import com.afautos.main.dto.product.ProductDTO;
 import com.afautos.main.models.product.Product;
 import com.afautos.main.repositories.product.ProductRepository;
 import com.afautos.main.services.product.ProductService;

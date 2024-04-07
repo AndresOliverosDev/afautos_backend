@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.afautos.main.dto.ProductDTO;
+import com.afautos.main.dto.product.ProductDTO;
 import com.afautos.main.models.product.Product;
 
 @Service

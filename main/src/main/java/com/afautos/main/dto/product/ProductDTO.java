@@ -1,4 +1,4 @@
-package com.afautos.main.dto;
+package com.afautos.main.dto.product;
 
 import java.math.BigDecimal;
 
@@ -16,6 +16,6 @@ public class ProductDTO {
     private Short quantity;
     private BigDecimal price;
     private String imageUrl;
-    private String categoryName;
-    private Short brand;
+    private String cat;
+    private String brand;
 }

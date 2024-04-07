@@ -1,10 +1,14 @@
 package com.afautos.main.models.user;
 
+import java.util.List;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,21 +20,20 @@ import lombok.Setter;
 @Getter
 public class User {
 
-    @Column(name = "user_id", nullable = false)
     @Id
+    @Column(name = "user_id")
     private String id;
 
-    @Column(name = "pass")
+    @Column(name = "pass", nullable = false)
     private String pass;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "phone")
-
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "names")
+    @Column(name = "names", nullable = false)
     private String names;
 
     @Column(name = "lastname")
@@ -39,6 +42,11 @@ public class User {
     @Column(name = "birthday")
     private LocalDate birthday;
 
-    @Column(name = "doc_type")
-    private Byte docType;
+    @ManyToOne
+    @JoinColumn(name = "doc_type")
+    private DocType docType;
+
+    @OneToMany
+    @JoinColumn(name = "user")
+    private List<Address> address;
 }
