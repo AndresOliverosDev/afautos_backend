@@ -3,6 +3,8 @@ package com.afautos.main.services.product.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -25,9 +27,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public String delProduct(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delProduct'");
+    public ResponseEntity<String> delProduct(Long id) {
+        try{
+            productRepository.deleteById(id);
+            return ResponseEntity.ok("Producto eliminado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error del servidor, no se pudo eliminar el producto");
+        }
     }
 
     @Override

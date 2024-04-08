@@ -2,6 +2,7 @@ package com.afautos.main.services.product;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.afautos.main.dto.product.ProductDTO;
@@ -12,7 +13,7 @@ public interface ProductService {
     
     String addProduct(Product product);
 
-    String delProduct(Long id);
+    ResponseEntity<String> delProduct(Long id);
 
     String updateProduct(Long id, Product product);
 
