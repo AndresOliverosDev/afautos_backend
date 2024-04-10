@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.afautos.main.models.product.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Short> {
+public interface CategoryRepository extends JpaRepository<Category, Byte> {
     
 }

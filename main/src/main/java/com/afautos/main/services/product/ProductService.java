@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.afautos.main.dto.product.ProductAddDTO;
 import com.afautos.main.dto.product.ProductDTO;
 import com.afautos.main.models.product.Product;
 
 @Service
 public interface ProductService {
     
-    String addProduct(Product product);
+    ResponseEntity<String> addProduct(ProductAddDTO productAddDTO);
 
     ResponseEntity<String> delProduct(Long id);
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.afautos.main.dto.product.ProductAddDTO;
 import com.afautos.main.dto.product.ProductDTO;
 import com.afautos.main.models.product.Product;
 import com.afautos.main.services.product.ProductService;
@@ -23,8 +24,8 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping("/addProd")
-    public String addProduct(@RequestBody Product product) {
-        return productService.addProduct(product);
+    public ResponseEntity<String> addProduct(@RequestBody ProductAddDTO productAddDTO) {
+        return productService.addProduct(productAddDTO);
     }
 
     @DeleteMapping("/deleteProd/{id}")
