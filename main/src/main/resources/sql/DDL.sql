@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS products (
     `description` VARCHAR(255),
     quantity SMALLINT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    image_url VARCHAR(100) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
     cat TINYINT,
     brand SMALLINT,
     PRIMARY KEY(prod_id),
