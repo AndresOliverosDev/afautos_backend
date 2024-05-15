@@ -40,11 +40,11 @@ public class ProductEntity {
     @Column(name = "image_url")
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cat")
     private CategoryEntity category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "brand")
     private BrandEntity brand;
 }
