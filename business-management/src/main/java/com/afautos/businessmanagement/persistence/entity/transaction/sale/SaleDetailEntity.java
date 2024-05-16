@@ -3,10 +3,6 @@ package com.afautos.businessmanagement.persistence.entity.transaction.sale;
 import java.math.BigDecimal;
 
 import com.afautos.businessmanagement.persistence.entity.product.ProductEntity;
-import com.afautos.businessmanagement.presentation.dto.product.interfaces.ProductProjection;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -34,11 +30,10 @@ public class SaleDetailEntity {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "product")
-    private ProductProjection product;
+    private ProductEntity product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "sale")
-    @JsonBackReference
     private SaleEntity sale;
 
     private Short quantity;
