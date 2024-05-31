@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS sales (
     sale_id BIGINT AUTO_INCREMENT,
     sale_date DATETIME NOT NULL,
     pay_method VARCHAR(20) NOT NULL,
-    total_price DECIMAL(10,2) NOT NULL,
+    total_price DECIMAL(10,2),
     customer VARCHAR(15),
     address VARCHAR(100),
     

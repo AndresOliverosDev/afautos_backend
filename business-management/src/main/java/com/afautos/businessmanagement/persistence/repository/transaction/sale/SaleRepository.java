@@ -1,7 +1,6 @@
 package com.afautos.businessmanagement.persistence.repository.transaction.sale;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,6 +21,6 @@ public interface SaleRepository extends JpaRepository<SaleEntity, Long>{
     @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO" +
     "(s.id, s.saleDate, s.payMethod, s.totalPrice, s.address) FROM SaleEntity s WHERE s.id = :id"
     )
-    Optional<SaleDTO> getSaleById(@Param("id") Long id);
+    SaleDTO getSaleById(@Param("id") Long id);
     
 }

@@ -9,5 +9,4 @@ public record SaleDTO(
     String payMethod,
     BigDecimal totalPrice,
     String address
-) {
-}
+) {}

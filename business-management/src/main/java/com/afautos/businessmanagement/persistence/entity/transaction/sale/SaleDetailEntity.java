@@ -41,5 +41,4 @@ public class SaleDetailEntity {
     private BigDecimal priceUnit;
 
     private BigDecimal subtotal;
-
 }

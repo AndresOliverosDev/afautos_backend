@@ -41,5 +41,5 @@ public class SaleEntity {
     private UserEntity customer;
 
     @Column(name = "address")
-    private String address; 
+    private String address;
 }
