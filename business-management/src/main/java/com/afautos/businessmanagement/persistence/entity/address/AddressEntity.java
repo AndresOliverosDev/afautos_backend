@@ -10,11 +10,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AddressEntity {
+    @Column(name = "addr_id")
     private Integer id;
 
+    @Column(name = "ref", length = 100)
     private String ref;
 
-    private Integer neighborhood;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "neighborhood")
+    private NeighborhoodEntity neighborhood;
 
     @ManyToOne
     @JoinColumn(name = "user")
