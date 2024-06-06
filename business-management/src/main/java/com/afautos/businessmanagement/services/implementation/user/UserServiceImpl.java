@@ -74,7 +74,6 @@ public class UserServiceImpl implements IUserService {
             userEntity.setEmail(userAdd.email());
             userEntity.setPhone(userAdd.phone());
             userEntity.setName(userAdd.name());
-            userEntity.setSurname(userAdd.surname());
             userEntity.setBirthday(userAdd.birthday());
             userEntity.setIsEnable(true);
             userEntity.setAccountNoExpired(true);

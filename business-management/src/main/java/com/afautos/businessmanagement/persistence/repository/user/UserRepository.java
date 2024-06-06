@@ -14,7 +14,8 @@ import com.afautos.businessmanagement.presentation.dto.user.UserDTO;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 
-    @Query("SELECT new com.afautos.businessmanagement.presentation.dto.user.UserDTO(u.id, u.username, u.email, u.phone, u.name, u.surname, u.birthday, u.docType.name, r.name) "
+    @Query("SELECT new com.afautos.businessmanagement.presentation.dto.user.UserDTO" +
+            "(u.id, u.username, u.email, u.phone, u.name, u.birthday, u.docType.name, r.name) "
             +
             "FROM UserEntity u " +
             "JOIN u.roles r")

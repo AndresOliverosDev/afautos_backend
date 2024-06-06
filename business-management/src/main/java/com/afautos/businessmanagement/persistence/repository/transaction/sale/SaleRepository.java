@@ -14,12 +14,12 @@ import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO;
 public interface SaleRepository extends JpaRepository<SaleEntity, Long>{
 
     @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO" +
-    "(s.id, s.saleDate, s.payMethod, s.totalPrice, s.address) FROM SaleEntity s"
+    "(s.id, s.saleDate, s.payMethod, s.totalPrice, s.address, s.customer.name) FROM SaleEntity s"
     )
     List<SaleDTO> getAll();
 
     @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO" +
-    "(s.id, s.saleDate, s.payMethod, s.totalPrice, s.address) FROM SaleEntity s WHERE s.id = :id"
+    "(s.id, s.saleDate, s.payMethod, s.totalPrice, s.address, s.customer.name) FROM SaleEntity s WHERE s.id = :id"
     )
     SaleDTO getSaleById(@Param("id") Long id);
     

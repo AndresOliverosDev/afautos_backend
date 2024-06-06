@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) UNIQUE NOT NULL,
     phone VARCHAR(10) UNIQUE NOT NULL,
     `names` VARCHAR(30) NOT NULL,
-    surnames VARCHAR(30) NOT NULL,
     doc_type TINYINT,
     birthday DATE NOT NULL,
     is_enable BOOLEAN,
@@ -78,7 +77,7 @@ CONSTRAINT fk_depart_city FOREIGN KEY(depart) REFERENCES departments(depart_id)
 
 CREATE TABLE IF NOT EXISTS neighborhoods(
 	neighborhood_id INTEGER AUTO_INCREMENT,
-    neighborhood_name VARCHAR(60),
+    neighborhood_name VARCHAR(60) NOT NULL,
     city SMALLINT,
 
     PRIMARY KEY(neighborhood_id),

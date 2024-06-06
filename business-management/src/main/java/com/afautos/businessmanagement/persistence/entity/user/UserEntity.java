@@ -2,20 +2,13 @@ package com.afautos.businessmanagement.persistence.entity.user;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import com.afautos.businessmanagement.persistence.entity.user.rol.RolEntity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,9 +37,6 @@ public class UserEntity {
     @Column(name = "names")
     private String name;
 
-    @Column(name = "surnames")
-    private String surname;
-
     @Column(name = "birthday")
     private LocalDate birthday;
 
@@ -62,6 +52,11 @@ public class UserEntity {
     @Column(name = "credential_no_expired")
     private Boolean credentialNoExpired;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
+    private List<AddressEntity> address;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "doc_type")
     private DocTypeEntity docType;
@@ -73,5 +68,27 @@ public class UserEntity {
         inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
     private Set<RolEntity> roles = new HashSet<>();
-    
+
+    // Methods Helpers of association children
+
+    public void addAddress(AddressEntity address) {
+        this.address.add(address);
+        address.setUser(this);
+    }
+
+    public void removeAddress(AddressEntity address) {
+        address.setUser(null);
+        this.address.remove(address);
+    }
+
+    public void removeAddresses() {
+        Iterator<AddressEntity> iterator = this.address.iterator();
+
+        while (iterator.hasNext()){
+            AddressEntity address = iterator.next();
+
+            address.setUser(null);
+            iterator.remove();
+        }
+    }
 }

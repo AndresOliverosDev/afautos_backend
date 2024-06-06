@@ -71,16 +71,16 @@ public class SaleServiceImpl implements ISaleService {
     }
 
     @Override
-    public ResponseEntity<String> updateTotalPrice(BigDecimal totalPrice, Long saleId){
+    public void updateTotalPrice(BigDecimal totalPrice, Long saleId){
         try {
             SaleEntity saleEntity = saleRepository.findById(saleId).orElseThrow(() ->
                     new LocalNotFoundException(("La venta con el id " + saleId + " no existe")));
             
             saleEntity.setTotalPrice(totalPrice);
             saleRepository.save(saleEntity);
-            return ResponseEntity.ok("El precio se actualizo correctamente");
+            ResponseEntity.ok("El precio se actualizo correctamente");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el valor total");
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el valor total");
         }
     }
 }

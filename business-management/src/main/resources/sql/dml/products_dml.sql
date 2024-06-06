@@ -6,4 +6,4 @@ VALUES ('Televisor LED', 'Televisor LED de alta definición', 50, 599.99, 'https
 
 INSERT INTO sales (sale_date, pay_method, total_price, customer, address) VALUES ("2024-05-15","TC",245000, "1","example");
 
-INSERT INTO sale_details(product,sale,quantity,price_unit,subtotal) VALUES (1,1,11,100,100000);
+INSERT INTO sale_details(product,sale,quantity,price_unit,subtotal) VALUES (1,1,121,12002,12200000);

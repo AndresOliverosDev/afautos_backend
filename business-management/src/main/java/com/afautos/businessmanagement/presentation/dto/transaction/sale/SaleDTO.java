@@ -8,5 +8,6 @@ public record SaleDTO(
     LocalDateTime saleDate,
     String payMethod,
     BigDecimal totalPrice,
-    String address
+    String address,
+    String customer
 ) {}
