@@ -1,5 +1,6 @@
-package com.afautos.businessmanagement.persistence.entity.user;
+package com.afautos.businessmanagement.persistence.entity.address;
 
+import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +21,4 @@ public class AddressEntity {
     private UserEntity user;
 
     // Override equals() and hashCode()
-
-    @Override
-    public boolean equals(Object obj) {
-        return
-    }
 }
