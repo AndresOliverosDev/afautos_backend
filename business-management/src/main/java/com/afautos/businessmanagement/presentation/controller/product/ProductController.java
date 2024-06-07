@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.businessmanagement.presentation.dto.product.ProductAddDTO;
-import com.afautos.businessmanagement.presentation.dto.product.ProductDTO;
+import com.afautos.businessmanagement.presentation.dto.product.request.ProductAddDTO;
+import com.afautos.businessmanagement.presentation.dto.product.response.ProductDTO;
 import com.afautos.businessmanagement.services.interfaces.product.IProductService;
 
 @RestController

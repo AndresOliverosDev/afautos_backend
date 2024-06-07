@@ -1,7 +1,6 @@
-package com.afautos.businessmanagement.presentation.dto.user;
+package com.afautos.businessmanagement.presentation.dto.user.response;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 public record UserDTO(

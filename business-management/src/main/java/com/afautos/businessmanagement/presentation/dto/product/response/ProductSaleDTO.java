@@ -1,4 +1,4 @@
-package com.afautos.businessmanagement.presentation.dto.product;
+package com.afautos.businessmanagement.presentation.dto.product.response;
 
 public record ProductSaleDTO(
     Long id,

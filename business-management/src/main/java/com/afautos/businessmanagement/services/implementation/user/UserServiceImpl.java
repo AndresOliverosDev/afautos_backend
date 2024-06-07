@@ -16,8 +16,8 @@ import com.afautos.businessmanagement.persistence.entity.user.rol.RolEntity;
 import com.afautos.businessmanagement.persistence.repository.user.DocTypeRepository;
 import com.afautos.businessmanagement.persistence.repository.user.RolRepository;
 import com.afautos.businessmanagement.persistence.repository.user.UserRepository;
-import com.afautos.businessmanagement.presentation.dto.user.UserAddDTO;
-import com.afautos.businessmanagement.presentation.dto.user.UserDTO;
+import com.afautos.businessmanagement.presentation.dto.user.request.UserAddDTO;
+import com.afautos.businessmanagement.presentation.dto.user.response.UserDTO;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 
 @Service

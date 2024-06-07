@@ -14,8 +14,8 @@ import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEn
 import com.afautos.businessmanagement.persistence.repository.product.ProductRepository;
 import com.afautos.businessmanagement.persistence.repository.transaction.sale.SaleDetailRepository;
 import com.afautos.businessmanagement.persistence.repository.transaction.sale.SaleRepository;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleDetailCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDetailDTO;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleDetailService;
 import org.springframework.transaction.annotation.Transactional;
 

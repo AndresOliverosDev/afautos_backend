@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.afautos.businessmanagement.presentation.dto.product.ProductAddDTO;
-import com.afautos.businessmanagement.presentation.dto.product.ProductDTO;
+import com.afautos.businessmanagement.presentation.dto.product.request.ProductAddDTO;
+import com.afautos.businessmanagement.presentation.dto.product.response.ProductDTO;
 
 public interface IProductService {
 

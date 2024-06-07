@@ -8,7 +8,7 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.afautos.businessmanagement.presentation.dto.user.UserAddDTO;
+import com.afautos.businessmanagement.presentation.dto.user.request.UserAddDTO;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 
 @Component

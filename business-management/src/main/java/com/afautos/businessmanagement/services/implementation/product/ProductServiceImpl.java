@@ -13,8 +13,8 @@ import com.afautos.businessmanagement.persistence.entity.product.ProductEntity;
 import com.afautos.businessmanagement.persistence.repository.product.BrandRepository;
 import com.afautos.businessmanagement.persistence.repository.product.CategoryRepository;
 import com.afautos.businessmanagement.persistence.repository.product.ProductRepository;
-import com.afautos.businessmanagement.presentation.dto.product.ProductAddDTO;
-import com.afautos.businessmanagement.presentation.dto.product.ProductDTO;
+import com.afautos.businessmanagement.presentation.dto.product.request.ProductAddDTO;
+import com.afautos.businessmanagement.presentation.dto.product.response.ProductDTO;
 import com.afautos.businessmanagement.services.interfaces.product.IProductService;
 
 import jakarta.persistence.EntityNotFoundException;
