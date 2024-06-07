@@ -1,6 +1,8 @@
 package com.afautos.businessmanagement.presentation.dto.user;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 public record UserDTO(
     String id,
@@ -10,7 +12,7 @@ public record UserDTO(
     String name,
     LocalDate birthday,
     String docType,
-    String roles
+    Set<String> roles
     )
 {
 }
