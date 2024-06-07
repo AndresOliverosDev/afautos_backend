@@ -2,10 +2,10 @@ package com.afautos.businessmanagement.persistence.entity.user;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.afautos.businessmanagement.persistence.entity.address.AddressEntity;
 import com.afautos.businessmanagement.persistence.entity.user.rol.RolEntity;
 
 import jakarta.persistence.*;
@@ -23,7 +23,7 @@ public class UserEntity {
     private String id;
 
     @Column(name = "username",nullable = false, unique = true)
-    private String username; 
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -31,7 +31,7 @@ public class UserEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false, length = 10)
     private String phone;
 
     @Column(name = "names")
@@ -57,11 +57,11 @@ public class UserEntity {
             orphanRemoval = true)
     private List<AddressEntity> address;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_type")
     private DocTypeEntity docType;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "users_roles",
         joinColumns = @JoinColumn(name = "user_id"),
@@ -69,26 +69,4 @@ public class UserEntity {
     )
     private Set<RolEntity> roles = new HashSet<>();
 
-    // Methods Helpers of association children
-
-    public void addAddress(AddressEntity address) {
-        this.address.add(address);
-        address.setUser(this);
-    }
-
-    public void removeAddress(AddressEntity address) {
-        address.setUser(null);
-        this.address.remove(address);
-    }
-
-    public void removeAddresses() {
-        Iterator<AddressEntity> iterator = this.address.iterator();
-
-        while (iterator.hasNext()){
-            AddressEntity address = iterator.next();
-
-            address.setUser(null);
-            iterator.remove();
-        }
-    }
 }
