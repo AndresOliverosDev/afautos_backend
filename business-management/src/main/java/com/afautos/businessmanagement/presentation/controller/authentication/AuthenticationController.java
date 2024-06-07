@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.businessmanagement.presentation.dto.authentication.AuthLoginRequest;
-import com.afautos.businessmanagement.presentation.dto.authentication.AuthResponse;
+import com.afautos.businessmanagement.presentation.dto.authentication.request.AuthLoginRequest;
+import com.afautos.businessmanagement.presentation.dto.authentication.response.AuthResponse;
 import com.afautos.businessmanagement.services.interfaces.authentication.IAuthenticationService;
 
 import org.springframework.web.bind.annotation.PostMapping;

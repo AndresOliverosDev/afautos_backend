@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.afautos.businessmanagement.presentation.dto.authentication.AuthLoginRequest;
-import com.afautos.businessmanagement.presentation.dto.authentication.AuthResponse;
+import com.afautos.businessmanagement.presentation.dto.authentication.request.AuthLoginRequest;
+import com.afautos.businessmanagement.presentation.dto.authentication.response.AuthResponse;
 import com.afautos.businessmanagement.services.implementation.user.UserDetailServiceImpl;
 import com.afautos.businessmanagement.services.interfaces.authentication.IAuthenticationService;
 

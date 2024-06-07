@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO;
 
 public interface ISaleService {
     List<SaleDTO> getAll();

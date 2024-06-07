@@ -1,4 +1,4 @@
-package com.afautos.businessmanagement.presentation.dto.transaction.sale;
+package com.afautos.businessmanagement.presentation.dto.transaction.sale.response;
 
 import java.util.List;
 

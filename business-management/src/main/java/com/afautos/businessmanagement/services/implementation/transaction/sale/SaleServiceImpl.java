@@ -14,8 +14,8 @@ import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEn
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
 import com.afautos.businessmanagement.persistence.repository.transaction.sale.SaleRepository;
 import com.afautos.businessmanagement.persistence.repository.user.UserRepository;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleService;
 
 @Service

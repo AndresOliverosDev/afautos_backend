@@ -1,4 +1,4 @@
-package com.afautos.businessmanagement.presentation.dto.user;
+package com.afautos.businessmanagement.presentation.dto.user.request;
 
 import java.time.LocalDate;
 import java.util.Set;

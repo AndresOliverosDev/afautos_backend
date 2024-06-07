@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.repository.transaction.sale.SaleDetailRepository;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleManagementCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleManagementDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDetailDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleManagementCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleManagementDTO;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleDetailService;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleManagementService;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleService;

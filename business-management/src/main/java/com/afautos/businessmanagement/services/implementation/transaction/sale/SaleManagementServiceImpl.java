@@ -6,17 +6,16 @@ import java.util.List;
 
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleDetailEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleManagementDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleDetailCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDetailDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleManagementDTO;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleDetailService;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleManagementService;
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleService;

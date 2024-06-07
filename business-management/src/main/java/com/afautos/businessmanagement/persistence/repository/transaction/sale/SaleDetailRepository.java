@@ -8,12 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleDetailEntity;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDetailDTO;
 
 @Repository
 public interface SaleDetailRepository extends JpaRepository<SaleDetailEntity, Long> {
 
-        @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailDTO" +
+        @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDetailDTO" +
                         "( s.product.id, s.product.image, s.product.name, s.product.brand.name" +
                         ", s.quantity, s.priceUnit, s.subtotal)" +
                         "FROM SaleDetailEntity s " +

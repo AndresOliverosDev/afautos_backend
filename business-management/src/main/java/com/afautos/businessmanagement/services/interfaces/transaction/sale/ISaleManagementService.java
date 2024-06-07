@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.afautos.businessmanagement.error.LocalNotFoundException;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleDetailCreateDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.SaleManagementDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleDetailCreateDTO;
+import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleManagementDTO;
 
 import jakarta.transaction.Transactional;
 

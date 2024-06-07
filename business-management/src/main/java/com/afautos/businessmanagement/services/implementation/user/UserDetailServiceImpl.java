@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
 import com.afautos.businessmanagement.persistence.repository.user.UserRepository;
-import com.afautos.businessmanagement.presentation.dto.authentication.AuthLoginRequest;
-import com.afautos.businessmanagement.presentation.dto.authentication.AuthResponse;
+import com.afautos.businessmanagement.presentation.dto.authentication.request.AuthLoginRequest;
+import com.afautos.businessmanagement.presentation.dto.authentication.response.AuthResponse;
 import com.afautos.businessmanagement.util.JwtUtils;
 
 @Service

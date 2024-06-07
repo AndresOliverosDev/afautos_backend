@@ -1,4 +1,4 @@
-package com.afautos.businessmanagement.presentation.dto.authentication;
+package com.afautos.businessmanagement.presentation.dto.authentication.request;
 
 import jakarta.validation.constraints.NotBlank;
 

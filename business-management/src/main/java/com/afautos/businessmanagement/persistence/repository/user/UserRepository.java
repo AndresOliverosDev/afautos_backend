@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
-import com.afautos.businessmanagement.presentation.dto.user.UserDTO;
+import com.afautos.businessmanagement.presentation.dto.user.response.UserDTO;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
