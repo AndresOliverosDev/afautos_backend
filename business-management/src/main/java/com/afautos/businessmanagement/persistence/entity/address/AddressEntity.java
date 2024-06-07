@@ -10,6 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AddressEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "addr_id")
     private Integer id;
 
