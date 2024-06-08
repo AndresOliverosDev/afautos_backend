@@ -1,8 +1,13 @@
 package com.afautos.businessmanagement.services.implementation.user;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import com.afautos.businessmanagement.persistence.entity.address.AddressEntity;
+import com.afautos.businessmanagement.presentation.dto.address.request.AddressRequestDTO;
+import com.afautos.businessmanagement.services.interfaces.address.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
@@ -17,9 +22,14 @@ public class UserEventListener {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IAddressService addressService;
+
+
     @EventListener
     public void onApplicationStarted(ApplicationStartedEvent event) {
         Set<Byte> roles = Set.of((byte) 1); // Aquí deberías proporcionar el ID del rol deseado
+        AddressRequestDTO addressRequestDTO = new AddressRequestDTO("Cra 81c #56-98 sur", 1, "1");
         UserAddDTO newUser = new UserAddDTO(
                 "1",
                 "admin",
@@ -34,6 +44,6 @@ public class UserEventListener {
         );
 
         // Agregar el nuevo usuario utilizando el servicio IUserService
-        userService.addUser(newUser);
+        userService.addUser(newUser, addressRequestDTO);
     }
 }

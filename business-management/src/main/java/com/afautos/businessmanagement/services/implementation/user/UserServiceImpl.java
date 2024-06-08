@@ -1,9 +1,14 @@
 package com.afautos.businessmanagement.services.implementation.user;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.afautos.businessmanagement.error.LocalNotFoundException;
+import com.afautos.businessmanagement.persistence.entity.address.AddressEntity;
+import com.afautos.businessmanagement.presentation.dto.address.request.AddressRequestDTO;
+import com.afautos.businessmanagement.services.interfaces.address.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +28,8 @@ import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 @Service
 public class UserServiceImpl implements IUserService {
 
+    // Dependency injection
+
     @Autowired
     private UserRepository userRepository;
 
@@ -32,16 +39,32 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private RolRepository rolRepository;
 
+    @Autowired
+    private IAddressService addressService;
+
+    // Methods
+
+    @Override
+    public UserEntity getUserById(String id) throws LocalNotFoundException {
+        return userRepository.findById(id).orElseThrow(() ->
+            new LocalNotFoundException("El usuario con el id " + id + " no existe")
+        );
+    }
+
     @Override
     public List<UserDTO> getAllUser() {
         return userRepository.getAllUser();
     }
 
     @Override
-    public ResponseEntity<String> addUser(UserAddDTO userAdd) {
+    public ResponseEntity<String> addUser(UserAddDTO userAdd, AddressRequestDTO address) {
 
         try {
-            
+
+            List <AddressEntity> addressEntity = new ArrayList<>();
+
+            addressEntity.add(addressService.createAddress(address));
+
             UserEntity userIdDuplicated = userRepository.findById(userAdd.id()).orElse(null);
 
             if (userIdDuplicated != null) {
@@ -75,6 +98,7 @@ public class UserServiceImpl implements IUserService {
             userEntity.setPhone(userAdd.phone());
             userEntity.setName(userAdd.name());
             userEntity.setBirthday(userAdd.birthday());
+            userEntity.setAddress(addressEntity);
             userEntity.setIsEnable(true);
             userEntity.setAccountNoExpired(true);
             userEntity.setAccountNoLocked(true);
