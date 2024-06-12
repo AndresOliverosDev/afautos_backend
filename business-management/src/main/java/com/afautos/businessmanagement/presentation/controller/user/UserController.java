@@ -2,6 +2,7 @@ package com.afautos.businessmanagement.presentation.controller.user;
 
 import java.util.List;
 
+import com.afautos.businessmanagement.presentation.dto.user.request.UserManagementResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addUser(@RequestBody UserAddDTO userAdd) {
-        return userService.addUser(userAdd);
+    public ResponseEntity<String> addUser(@RequestBody UserManagementResponseDTO user) {
+        return userService.addUser(user.user(), user.address());
     }
 }
