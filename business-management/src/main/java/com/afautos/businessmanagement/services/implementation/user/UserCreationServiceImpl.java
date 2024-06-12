@@ -1,2 +1,5 @@
-package com.afautos.businessmanagement.services.implementation.user;public class UserCreationServiceImpl {
+package com.afautos.businessmanagement.services.implementation.user;
+
+public class UserCreationServiceImpl {
+
 }
