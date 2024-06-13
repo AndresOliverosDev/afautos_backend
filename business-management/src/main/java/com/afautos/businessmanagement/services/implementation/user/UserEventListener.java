@@ -22,14 +22,9 @@ public class UserEventListener {
     @Autowired
     private IUserService userService;
 
-    @Autowired
-    private IAddressService addressService;
-
-
     @EventListener
     public void onApplicationStarted(ApplicationStartedEvent event) {
         Set<Byte> roles = Set.of((byte) 1); // Aquí deberías proporcionar el ID del rol deseado
-        AddressRequestDTO addressRequestDTO = new AddressRequestDTO("Cra 81c #56-98 sur", 1, "1");
         UserAddDTO newUser = new UserAddDTO(
                 "1",
                 "admin",
@@ -44,6 +39,6 @@ public class UserEventListener {
         );
 
         // Agregar el nuevo usuario utilizando el servicio IUserService
-        userService.addUser(newUser, addressRequestDTO);
+        userService.addUser(newUser);
     }
 }

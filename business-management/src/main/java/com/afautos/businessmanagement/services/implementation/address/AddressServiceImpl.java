@@ -32,7 +32,7 @@ public class AddressServiceImpl implements IAddressService {
     public AddressEntity createAddress(AddressRequestDTO addressRequestDTO) {
         try {
             // User
-            UserEntity user = userService.getUserById(addressRequestDTO.userId());
+            UserEntity userCurrent = userService.getUserById(addressRequestDTO.userId());
 
             // Neighborhood
             NeighborhoodEntity neighborhood = neighborhoodService.getNeighborhoodById(addressRequestDTO.neighborhoodId());
@@ -40,7 +40,7 @@ public class AddressServiceImpl implements IAddressService {
             AddressEntity addressCurrent = new AddressEntity();
             addressCurrent.setNeighborhood(neighborhood);
             addressCurrent.setRef(addressRequestDTO.ref());
-            addressCurrent.setUser(user);
+            addressCurrent.setUser(userCurrent);
 
             return addressCurrent;
         } catch (LocalNotFoundException e) {

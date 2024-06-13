@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addUser(@RequestBody UserManagementResponseDTO user) {
-        return userService.addUser(user.user(), user.address());
+    public ResponseEntity<String> addUser(@RequestBody UserAddDTO user) {
+        return userService.addUser(user);
     }
 }

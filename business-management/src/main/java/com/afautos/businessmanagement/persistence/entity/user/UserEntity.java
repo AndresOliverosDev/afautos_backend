@@ -2,10 +2,8 @@ package com.afautos.businessmanagement.persistence.entity.user;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import com.afautos.businessmanagement.persistence.entity.address.AddressEntity;
 import com.afautos.businessmanagement.persistence.entity.user.rol.RolEntity;
 
 import jakarta.persistence.*;
@@ -51,11 +49,6 @@ public class UserEntity {
 
     @Column(name = "credential_no_expired")
     private Boolean credentialNoExpired;
-
-    @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<AddressEntity> address;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_type")

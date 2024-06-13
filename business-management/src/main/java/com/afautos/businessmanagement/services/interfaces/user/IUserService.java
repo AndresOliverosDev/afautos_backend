@@ -17,5 +17,5 @@ public interface IUserService {
 
     UserEntity getUserById(String id) throws LocalNotFoundException;
 
-    UserEntity addUser(UserAddDTO userAdd, List<AddressEntity> addressEntity);
+    ResponseEntity<String> addUser(UserAddDTO userAdd);
 }

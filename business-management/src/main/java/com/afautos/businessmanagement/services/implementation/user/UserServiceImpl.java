@@ -1,16 +1,12 @@
 package com.afautos.businessmanagement.services.implementation.user;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.afautos.businessmanagement.error.LocalNotFoundException;
-import com.afautos.businessmanagement.persistence.entity.address.AddressEntity;
-import com.afautos.businessmanagement.presentation.dto.address.request.AddressRequestDTO;
 import com.afautos.businessmanagement.services.interfaces.address.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,9 +35,6 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private RolRepository rolRepository;
 
-    @Autowired
-    private IAddressService addressService;
-
     // Methods
 
     @Override
@@ -57,7 +50,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserEntity addUser(UserAddDTO userAdd, List<AddressEntity> addressEntity) {
+    public ResponseEntity<String> addUser(UserAddDTO userAdd) {
 
         try {
 
@@ -91,7 +84,6 @@ public class UserServiceImpl implements IUserService {
             userEntity.setPhone(userAdd.phone());
             userEntity.setName(userAdd.name());
             userEntity.setBirthday(userAdd.birthday());
-            userEntity.setAddress(addressEntity);
             userEntity.setIsEnable(true);
             userEntity.setAccountNoExpired(true);
             userEntity.setAccountNoLocked(true);
@@ -101,7 +93,7 @@ public class UserServiceImpl implements IUserService {
 
             userRepository.save(userEntity);
 
-            return userEntity;
+            return ResponseEntity.ok("Usuario creado correctamente");
         } catch (Exception e) {
             throw new RuntimeException("Error al crear el usuario");
         }
