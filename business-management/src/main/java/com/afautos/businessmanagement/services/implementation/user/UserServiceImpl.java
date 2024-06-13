@@ -57,35 +57,28 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseEntity<String> addUser(UserAddDTO userAdd, AddressRequestDTO address) {
+    public UserEntity addUser(UserAddDTO userAdd, List<AddressEntity> addressEntity) {
 
         try {
 
-            List <AddressEntity> addressEntity = new ArrayList<>();
-
-            addressEntity.add(addressService.createAddress(address));
-
+            // Check if the user already exists
             UserEntity userIdDuplicated = userRepository.findById(userAdd.id()).orElse(null);
-
             if (userIdDuplicated != null) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El Usuario ya existe");
+                throw new RuntimeException("El usuario ya existe");
             }
 
-            // Document Type
-            DocTypeEntity docTypeCurrent = docTypeRepository.findById(userAdd.docType()).orElse(null);
-            if (docTypeCurrent == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El tipo de documento no existe");
-            }
+            // Search Document Type
+            DocTypeEntity docTypeCurrent = docTypeRepository.findById(userAdd.docType()).orElseThrow(() ->
+                    new LocalNotFoundException("El tipo de documento con id " + userAdd.docType() + " no existe"));
 
-            // Roles
+            // Search Roles
             Set<RolEntity> rolesCurrent = new HashSet<>();
-
             for (Byte rolId : userAdd.roles()) {
                 RolEntity rolEntity = rolRepository.findById(rolId).orElse(null);
                 if (rolEntity != null) {
                     rolesCurrent.add(rolEntity);
                 } else {
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El rol " + rolId + " No existe");
+                    throw new LocalNotFoundException("El rol con id " + rolId + " no existe");
                 }
             }
             String passwordEncoder = new BCryptPasswordEncoder().encode(userAdd.password());
@@ -108,9 +101,9 @@ public class UserServiceImpl implements IUserService {
 
             userRepository.save(userEntity);
 
-            return ResponseEntity.ok("El usuario con el ID " + userAdd.id() + " Se creo correctamente");
+            return userEntity;
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el usuario");
+            throw new RuntimeException("Error al crear el usuario");
         }
     }
 
