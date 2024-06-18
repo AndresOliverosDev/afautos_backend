@@ -68,7 +68,7 @@ PRIMARY KEY(depart_id)
 
 CREATE TABLE IF NOT EXISTS cities (
 city_id SMALLINT AUTO_INCREMENT,
-city_name VARCHAR(60),
+city_name VARCHAR(60) NOT NULL,
 depart TINYINT,
 
 PRIMARY KEY(city_id),
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS neighborhoods(
 
 CREATE TABLE IF NOT EXISTS address (
     addr_id INTEGER AUTO_INCREMENT,
-    ref VARCHAR(100),
+    ref VARCHAR(100) NOT NULL UNIQUE,
     neighborhood INTEGER,
     user VARCHAR(15),
 

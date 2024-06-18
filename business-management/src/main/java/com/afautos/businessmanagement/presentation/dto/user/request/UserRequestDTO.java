@@ -3,7 +3,7 @@ package com.afautos.businessmanagement.presentation.dto.user.request;
 import java.time.LocalDate;
 import java.util.Set;
 
-public record UserAddDTO(
+public record UserRequestDTO(
         String id,
         String username,
         String password,

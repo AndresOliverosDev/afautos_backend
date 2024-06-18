@@ -1,19 +1,14 @@
 package com.afautos.businessmanagement.services.implementation.user;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
-import com.afautos.businessmanagement.persistence.entity.address.AddressEntity;
-import com.afautos.businessmanagement.presentation.dto.address.request.AddressRequestDTO;
-import com.afautos.businessmanagement.services.interfaces.address.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.afautos.businessmanagement.presentation.dto.user.request.UserAddDTO;
+import com.afautos.businessmanagement.presentation.dto.user.request.UserRequestDTO;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 
 @Component
@@ -25,7 +20,7 @@ public class UserEventListener {
     @EventListener
     public void onApplicationStarted(ApplicationStartedEvent event) {
         Set<Byte> roles = Set.of((byte) 1); // Aquí deberías proporcionar el ID del rol deseado
-        UserAddDTO newUser = new UserAddDTO(
+        UserRequestDTO newUser = new UserRequestDTO(
                 "1",
                 "admin",
                 "admin",
