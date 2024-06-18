@@ -2,7 +2,6 @@ package com.afautos.businessmanagement.presentation.controller.user;
 
 import java.util.List;
 
-import com.afautos.businessmanagement.presentation.dto.user.request.UserManagementResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.businessmanagement.presentation.dto.user.request.UserAddDTO;
+import com.afautos.businessmanagement.presentation.dto.user.request.UserRequestDTO;
 import com.afautos.businessmanagement.presentation.dto.user.response.UserDTO;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 
@@ -30,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addUser(@RequestBody UserAddDTO user) {
+    public ResponseEntity<String> addUser(@RequestBody UserRequestDTO user) {
         return userService.addUser(user);
     }
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import com.afautos.businessmanagement.error.LocalNotFoundException;
-import com.afautos.businessmanagement.services.interfaces.address.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import com.afautos.businessmanagement.persistence.entity.user.rol.RolEntity;
 import com.afautos.businessmanagement.persistence.repository.user.DocTypeRepository;
 import com.afautos.businessmanagement.persistence.repository.user.RolRepository;
 import com.afautos.businessmanagement.persistence.repository.user.UserRepository;
-import com.afautos.businessmanagement.presentation.dto.user.request.UserAddDTO;
+import com.afautos.businessmanagement.presentation.dto.user.request.UserRequestDTO;
 import com.afautos.businessmanagement.presentation.dto.user.response.UserDTO;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseEntity<String> addUser(UserAddDTO userAdd) {
+    public ResponseEntity<String> addUser(UserRequestDTO userAdd) {
 
         try {
 
@@ -95,7 +95,7 @@ public class UserServiceImpl implements IUserService {
 
             return ResponseEntity.ok("Usuario creado correctamente");
         } catch (Exception e) {
-            throw new RuntimeException("Error al crear el usuario");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el usuario");
         }
     }
 

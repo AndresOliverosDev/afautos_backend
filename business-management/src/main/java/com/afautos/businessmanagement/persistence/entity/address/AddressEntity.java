@@ -15,7 +15,7 @@ public class AddressEntity {
     @Column(name = "addr_id")
     private Integer id;
 
-    @Column(name = "ref", length = 100)
+    @Column(name = "ref", length = 100, nullable = false)
     private String ref;
 
     @ManyToOne(fetch = FetchType.LAZY)

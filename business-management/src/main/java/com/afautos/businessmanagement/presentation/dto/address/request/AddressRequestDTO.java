@@ -5,4 +5,5 @@ public record AddressRequestDTO(
         Integer neighborhoodId,
         String userId
 ) {
+
 }
