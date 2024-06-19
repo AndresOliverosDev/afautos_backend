@@ -3,7 +3,6 @@ package com.afautos.businessmanagement.persistence.entity.transaction.order;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

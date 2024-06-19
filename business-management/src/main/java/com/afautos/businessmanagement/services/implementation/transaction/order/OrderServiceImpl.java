@@ -1,6 +1,5 @@
 package com.afautos.businessmanagement.services.implementation.transaction.order;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.transaction.order.OrderEntity;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;

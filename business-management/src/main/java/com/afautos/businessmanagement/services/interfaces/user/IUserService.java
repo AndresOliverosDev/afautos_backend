@@ -2,7 +2,6 @@ package com.afautos.businessmanagement.services.interfaces.user;
 
 import java.util.List;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
 import org.springframework.http.ResponseEntity;
 
