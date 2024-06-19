@@ -34,7 +34,7 @@ public class AddressServiceImpl implements IAddressService {
     public ResponseEntity<String> createAddress(AddressRequestDTO addressRequestDTO) {
         try {
             // Find user
-            UserEntity userCurrent = userService.getUserById(addressRequestDTO.userId());
+            UserEntity userCurrent = userService.getUserEntityById(addressRequestDTO.userId());
 
             // Find neighborhood
             NeighborhoodEntity neighborhood = neighborhoodService.getNeighborhoodById(addressRequestDTO.neighborhoodId());

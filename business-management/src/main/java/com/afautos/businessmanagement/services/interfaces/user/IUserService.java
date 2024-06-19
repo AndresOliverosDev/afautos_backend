@@ -13,7 +13,7 @@ public interface IUserService {
     
     List<UserDTO> getAllUser();
 
-    UserEntity getUserById(String id) throws LocalNotFoundException;
+    UserEntity getUserEntityById(String id);
 
     ResponseEntity<String> addUser(UserRequestDTO userAdd);
 }

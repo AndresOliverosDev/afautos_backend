@@ -38,10 +38,8 @@ public class UserServiceImpl implements IUserService {
     // Methods
 
     @Override
-    public UserEntity getUserById(String id) throws LocalNotFoundException {
-        return userRepository.findById(id).orElseThrow(() ->
-            new LocalNotFoundException("El usuario con el id " + id + " no existe")
-        );
+    public UserEntity getUserEntityById(String id){
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
