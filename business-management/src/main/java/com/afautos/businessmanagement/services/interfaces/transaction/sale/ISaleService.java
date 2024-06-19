@@ -13,7 +13,7 @@ public interface ISaleService {
 
     SaleDTO getSaleDTOById(Long id) throws LocalNotFoundException;
 
-    SaleEntity getSaleEntityById(Long id) throws LocalNotFoundException;
+    SaleEntity getSaleEntityById(Long id);
 
     SaleEntity createSale(SaleCreateDTO saleCreateDTO) throws LocalNotFoundException;
 

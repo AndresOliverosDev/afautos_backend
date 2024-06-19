@@ -109,10 +109,10 @@ CREATE TABLE IF NOT EXISTS sales (
 );
 
 CREATE TABLE IF NOT EXISTS orders (
-    order_id INTEGER AUTO_INCREMENT,
+    order_id BIGINT AUTO_INCREMENT,
     order_date DATETIME NOT NULL,
     order_state VARCHAR(15) NOT NULL,
-    observations VARCHAR(100),
+    observations VARCHAR(200),
     sale BIGINT,
     employee VARCHAR(15),
     PRIMARY KEY(order_id),
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS sale_details (
 
 CREATE TABLE IF NOT EXISTS order_details (
     order_detail_id BIGINT AUTO_INCREMENT,
-    order_id INTEGER,
+    order_id BIGINT,
     product BIGINT,
     quantity SMALLINT NOT NULL,
 

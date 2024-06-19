@@ -8,7 +8,6 @@ import com.afautos.businessmanagement.presentation.dto.address.request.AddressRe
 import com.afautos.businessmanagement.services.interfaces.address.IAddressService;
 import com.afautos.businessmanagement.services.interfaces.address.INeighborhoodService;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +33,7 @@ public class AddressServiceImpl implements IAddressService {
     public ResponseEntity<String> createAddress(AddressRequestDTO addressRequestDTO) {
         try {
             // Find user
-            UserEntity userCurrent = userService.getUserById(addressRequestDTO.userId());
+            UserEntity userCurrent = userService.getUserEntityById(addressRequestDTO.userId());
 
             // Find neighborhood
             NeighborhoodEntity neighborhood = neighborhoodService.getNeighborhoodById(addressRequestDTO.neighborhoodId());

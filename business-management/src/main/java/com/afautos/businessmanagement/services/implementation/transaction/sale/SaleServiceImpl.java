@@ -42,12 +42,8 @@ public class SaleServiceImpl implements ISaleService {
     }
 
     @Override
-    public SaleEntity getSaleEntityById(Long id) throws LocalNotFoundException {
-        SaleEntity sale = saleRepository.findById(id).orElse(null);
-        if (sale == null) {
-            throw new LocalNotFoundException("Venta con el id " + id + " no existe");
-        }
-        return sale;
+    public SaleEntity getSaleEntityById(Long id) {
+        return saleRepository.findById(id).orElse(null);
     }
 
     @Override

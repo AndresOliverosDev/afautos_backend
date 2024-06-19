@@ -2,7 +2,6 @@ package com.afautos.businessmanagement.services.interfaces.user;
 
 import java.util.List;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
 import org.springframework.http.ResponseEntity;
 
@@ -13,7 +12,7 @@ public interface IUserService {
     
     List<UserDTO> getAllUser();
 
-    UserEntity getUserById(String id) throws LocalNotFoundException;
+    UserEntity getUserEntityById(String id);
 
     ResponseEntity<String> addUser(UserRequestDTO userAdd);
 }
