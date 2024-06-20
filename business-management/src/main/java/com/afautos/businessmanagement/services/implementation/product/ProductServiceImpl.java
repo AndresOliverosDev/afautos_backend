@@ -68,7 +68,6 @@ public class ProductServiceImpl implements IProductService {
 
             return ResponseEntity.ok("El producto con el ID " + productEntity.getId() + " se creó exitosamente");
         } catch (Exception e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el producto");
         }
     }

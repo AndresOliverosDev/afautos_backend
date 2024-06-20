@@ -6,7 +6,6 @@ import com.afautos.businessmanagement.presentation.dto.transaction.order.request
 import com.afautos.businessmanagement.presentation.dto.transaction.order.response.OrderDetailResponseDTO;
 import com.afautos.businessmanagement.presentation.dto.transaction.order.response.OrderManagementResponseDTO;
 import com.afautos.businessmanagement.presentation.dto.transaction.order.response.OrderResponseDTO;
-import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleManagementDTO;
 import com.afautos.businessmanagement.services.interfaces.transaction.order.IOrderDetailService;
 import com.afautos.businessmanagement.services.interfaces.transaction.order.IOrderManagementService;
 import com.afautos.businessmanagement.services.interfaces.transaction.order.IOrderService;

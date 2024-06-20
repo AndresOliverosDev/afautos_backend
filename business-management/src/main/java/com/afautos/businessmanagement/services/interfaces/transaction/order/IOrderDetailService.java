@@ -1,6 +1,5 @@
 package com.afautos.businessmanagement.services.interfaces.transaction.order;
 
-import com.afautos.businessmanagement.persistence.entity.transaction.order.OrderDetailEntity;
 import com.afautos.businessmanagement.presentation.dto.transaction.order.request.OrderDetailRequestDTO;
 import com.afautos.businessmanagement.presentation.dto.transaction.order.response.OrderDetailResponseDTO;
 import org.springframework.http.ResponseEntity;

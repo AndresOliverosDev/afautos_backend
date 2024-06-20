@@ -11,8 +11,6 @@ import com.afautos.businessmanagement.services.interfaces.transaction.order.IOrd
 import com.afautos.businessmanagement.services.interfaces.transaction.sale.ISaleService;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -40,7 +38,7 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public OrderEntity getOrderEntityById(Long orderId) {
         return orderRepository.findById(orderId).orElse(null);
-    };
+    }
 
     // Write Methods
     @Override
