@@ -22,6 +22,7 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ProductServiceImpl implements IProductService {
 
+    // Dependency injection
     @Autowired
     private ProductRepository productRepository;
 
@@ -31,9 +32,15 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    // Read
     @Override
     public List<ProductDTO> getAllProd() {
         return productRepository.getAll();
+    }
+
+    @Override
+    public ProductEntity getProductEntityById(Long productId) {
+        return productRepository.findById(productId).orElse(null);
     }
 
     @Override

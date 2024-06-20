@@ -3,7 +3,6 @@ package com.afautos.businessmanagement.presentation.dto.transaction.order.respon
 public record OrderDetailResponseDTO(
         Long id,
         Short quantity,
-        Long saleId,
         Long productId,
         String productName,
         String productBrand,

@@ -34,11 +34,8 @@ public class SaleDetailServiceImpl implements ISaleDetailService{
 
     // Get all details by sale
     @Override
-    public List<SaleDetailDTO> getAllBySale(Long idSale) throws LocalNotFoundException{
-        List<SaleDetailDTO> saleDetail = saleDetailRepository.getAllBySale(idSale);
-
-        return saleDetail;
-
+    public List<SaleDetailDTO> getAllBySale(Long idSale){
+        return saleDetailRepository.getAllBySale(idSale);
     }
 
     // Create sale details to a sale

@@ -1,5 +1,6 @@
 package com.afautos.businessmanagement.services.implementation.transaction.order;
 
+import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.transaction.order.OrderEntity;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
@@ -36,21 +37,26 @@ public class OrderServiceImpl implements IOrderService {
         return orderRepository.getAllOrders();
     }
 
+    @Override
+    public OrderEntity getOrderEntityById(Long orderId) {
+        return orderRepository.findById(orderId).orElse(null);
+    };
+
     // Write Methods
     @Override
-    public ResponseEntity<String> createOrder(OrderRequestDTO orderRequestDTO) {
+    public OrderEntity createOrder(OrderRequestDTO orderRequestDTO) {
         try {
             // Search the sale
             SaleEntity saleEntity = saleService.getSaleEntityById(orderRequestDTO.saleId());
             if (saleEntity == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El pedido con el id "
+                throw new LocalNotFoundException("El pedido con el id "
                         + orderRequestDTO.saleId() + " no existe");
             }
 
             // Search the employee
             UserEntity employeeEntity = userService.getUserEntityById(orderRequestDTO.employeeId());
             if (employeeEntity == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El empleado con el id "
+                throw new LocalNotFoundException("El empleado con el id "
                         + orderRequestDTO.employeeId() + " no existe");
             }
 
@@ -67,11 +73,9 @@ public class OrderServiceImpl implements IOrderService {
             orderEntity.setEmployee(employeeEntity);
 
             // Save to database
-            orderRepository.save(orderEntity);
-
-            return ResponseEntity.ok("El pedido se creo correctamente");
+            return orderRepository.save(orderEntity);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el pedido: ");
+            throw new RuntimeException("Error al crear el pedido: ");
         }
     }
 }
