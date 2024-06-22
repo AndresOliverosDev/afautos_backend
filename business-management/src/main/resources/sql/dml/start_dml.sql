@@ -1,4 +1,5 @@
 /* Users */
+USE afautos;
 INSERT roles(rol_name) VALUES ("ADMIN"),("LOGÍSTICA"),("VENTAS"),("CLIENTE");
 
 INSERT `permissions`(permission_name) VALUES ("CREATE"),("READ"),("UPDATE"),("DELETE");

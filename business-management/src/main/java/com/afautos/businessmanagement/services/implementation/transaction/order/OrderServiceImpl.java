@@ -1,5 +1,6 @@
 package com.afautos.businessmanagement.services.implementation.transaction.order;
 
+import com.afautos.businessmanagement.error.LocalNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.transaction.order.OrderEntity;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements IOrderService {
@@ -34,6 +36,12 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public List<OrderResponseDTO> getAllOrdersDTO() {
         return orderRepository.getAllOrders();
+    }
+
+    // Read Entities Methods
+    @Override
+    public Optional<OrderEntity> getOrderEntityById(Long orderId) {
+        return orderRepository.findById(orderId);
     }
 
     // Write Methods
