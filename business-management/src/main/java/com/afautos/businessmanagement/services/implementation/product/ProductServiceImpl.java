@@ -1,6 +1,7 @@
 package com.afautos.businessmanagement.services.implementation.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ProductServiceImpl implements IProductService {
 
+    // Dependency injection
     @Autowired
     private ProductRepository productRepository;
 
@@ -31,9 +33,16 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    // Find
     @Override
     public List<ProductDTO> getAllProd() {
         return productRepository.getAll();
+    }
+
+    //Find entities
+    @Override
+    public Optional<ProductEntity> getProductEntityById(Long productId) {
+        return productRepository.findById(productId);
     }
 
     @Override
