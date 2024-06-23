@@ -15,6 +15,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetailEntity, 
     @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.order.response.OrderDetailResponseDTO" +
             "(o.id, o.quantity, o.order.id, o.product.id, o.product.name, o.product.brand.name, o.product.image)" +
             " FROM OrderDetailEntity o" +
-            " WHERE o.id = :orderId")
+            " WHERE o.order.id = :orderId")
     List<OrderDetailResponseDTO> getOrderDetailsByOrder(@Param("orderId") Long orderId);
 }
