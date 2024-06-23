@@ -1,26 +1,35 @@
 package com.afautos.businessmanagement.presentation.controller.transaction.order;
 
+import com.afautos.businessmanagement.presentation.dto.transaction.order.request.OrderDetailRequestDTO;
 import com.afautos.businessmanagement.presentation.dto.transaction.order.response.OrderDetailResponseDTO;
 import com.afautos.businessmanagement.services.interfaces.transaction.order.IOrderDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Detalles de Pedido", description = "El controlador de detalles de pedido proporciona endpoints para gestionar los detalles de los pedidos dentro del sistema.")
 @RestController
 @RequestMapping("/orderDetail")
 public class OrderDetailController {
 
-    // Dependency injection
-    @Autowired
-    private IOrderDetailService orderDetailService;
+    private final IOrderDetailService orderDetailService;
 
-    // Read
-    @PostMapping("/getAllByOrder/{orderId}")
+    public OrderDetailController(IOrderDetailService orderDetailService){
+        this.orderDetailService = orderDetailService;
+    }
+
+    @Operation(summary = "Obtener detalles de pedido por ID de pedido", description = "Recupera una lista de todos los detalles de un pedido específico por el ID del pedido")
+    @GetMapping("/getAllByOrder/{orderId}")
     public List<OrderDetailResponseDTO> getOrderDetailsByOrder(@PathVariable Long orderId) {
         return orderDetailService.getOrderDetailsByOrder(orderId);
+    }
+
+    @Operation(summary = "Crear un nuevo detalle de pedido", description = "Crea un nuevo detalle de pedido en el sistema")
+    @PostMapping("/create")
+    public ResponseEntity<String> createOrderDetail(@RequestBody OrderDetailRequestDTO orderDetailRequestDTO) {
+        return orderDetailService.createOrderDetail(orderDetailRequestDTO);
     }
 }
