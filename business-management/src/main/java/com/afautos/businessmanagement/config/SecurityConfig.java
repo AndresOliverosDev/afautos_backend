@@ -22,6 +22,11 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import com.afautos.businessmanagement.config.filter.JwtTokenValidator;
 import com.afautos.businessmanagement.services.implementation.user.UserDetailServiceImpl;
 import com.afautos.businessmanagement.util.JwtUtils;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -36,6 +41,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
             .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
             .authorizeHttpRequests(http -> {
                 http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
                 http.requestMatchers("/v3/api-docs/**","/swagger-ui/**", "/swagger-ui.html").permitAll();
@@ -63,5 +69,21 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("*"));
+        config.setAllowedMethods(List.of("*"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(false);
+        config.applyPermitDefaultValues();
+
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 }
