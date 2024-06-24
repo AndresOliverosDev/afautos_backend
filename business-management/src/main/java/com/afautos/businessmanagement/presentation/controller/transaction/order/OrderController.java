@@ -8,6 +8,7 @@ import com.afautos.businessmanagement.services.interfaces.transaction.order.IOrd
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,26 +19,29 @@ import java.util.List;
 public class OrderController {
 
     private final IOrderService orderService;
-    private final IOrderManagementService orderManagmentService;
+    private final IOrderManagementService orderManagementService;
 
     public OrderController(IOrderService orderService, IOrderManagementService orderManagementService) {
         this.orderService = orderService;
-        this.orderManagmentService = orderManagementService;
+        this.orderManagementService = orderManagementService;
     }
 
     @Operation(summary = "Obtener todos los pedidos", description = "Recupera una lista de todos los pedidos disponibles en el sistema")
+    @PreAuthorize("hasAuthority('READ') and (hasRole('ADMIN') or hasRole('LOGISTICA'))")
     @GetMapping("/getAll")
     public List<OrderResponseDTO> getAllOrders() {
         return orderService.getAllOrdersDTO();
     }
 
     @Operation(summary = "Obtener todos los pedidos con detalles", description = "Recupera una lista de todos los pedidos con sus detalles en el sistema")
+    @PreAuthorize("hasAuthority('READ') and (hasRole('ADMIN') or hasRole('LOGISTICA'))")
     @GetMapping("/getAllWithDetails")
     public List<OrderManagementResponseDTO> getAllOrdersWithDetails() {
-        return orderManagmentService.getAllOrdersWithDetails();
+        return orderManagementService.getAllOrdersWithDetails();
     }
 
     @Operation(summary = "Crear un nuevo pedido", description = "Crea un nuevo pedido en el sistema")
+    @PreAuthorize("hasAuthority('CREATE') and (hasRole('ADMIN') or hasRole('LOGISTICA'))")
     @PostMapping("/createOrder")
     public ResponseEntity<String> createOrder(@RequestBody OrderRequestDTO orderRequestDTO) {
         return orderService.createOrder(orderRequestDTO);

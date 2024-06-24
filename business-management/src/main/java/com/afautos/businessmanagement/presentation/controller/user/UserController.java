@@ -31,13 +31,13 @@ public class UserController {
 
     @Operation(summary = "Obtener todos los usuarios", description = "Recupera una lista de todos los usuarios disponibles en el sistema")
     @PreAuthorize("hasAuthority('READ')")
-    @GetMapping("/getAll")
+    @GetMapping("/getAllUsers")
     public List<UserDTO> getAllUser() {
         return userService.getAllUser();
     }
 
     @Operation(summary = "Agregar un nuevo usuario", description = "Agrega un nuevo usuario al sistema")
-    @PostMapping("/add")
+    @PostMapping("/createUser")
     public ResponseEntity<String> addUser(@RequestBody UserRequestDTO user) {
         return userService.addUser(user);
     }

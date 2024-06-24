@@ -27,7 +27,6 @@ public class UserEventListener {
                 "admin@example.com",
                 "123456789",
                 "Admin",
-                "User",
                 LocalDate.of(1990, 1, 1),
                 (byte) 1, // Aquí deberías proporcionar el ID correcto del tipo de documento
                 roles // Asigna el conjunto de roles al usuario

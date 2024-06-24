@@ -10,7 +10,7 @@ public record UserRequestDTO(
         String email,
         String phone,
         String name,
-        String user, LocalDate birthday,
+        LocalDate birthday,
         Byte docType,
         Set<Byte> roles
 )

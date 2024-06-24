@@ -34,31 +34,35 @@ public class SaleController {
     }
 
     @Operation(summary = "Obtener todas las ventas con detalles", description = "Recupera una lista de todas las ventas disponibles en el sistema con sus detalles")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
     @GetMapping("/getAllSales")
     public List<SaleManagementDTO> getAllSalesDto() {
         return saleManagementService.getAllSalesDto();
     }
 
     @Operation(summary = "Obtener todas las ventas", description = "Recupera una lista de todas las ventas disponibles en el sistema")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
     @GetMapping("/getAll")
     public List<SaleDTO> getAllSale() {
         return saleService.getAll();
     }
 
     @Operation(summary = "Obtener venta por ID", description = "Recupera una venta específica por su ID")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
     @GetMapping("/getSaleById/{id}")
     public SaleManagementDTO getAllSales(@PathVariable Long id) throws LocalNotFoundException{
         return saleManagementService.getById(id);
     }
 
     @Operation(summary = "Crear una nueva venta", description = "Crea una nueva venta en el sistema con detalles de la venta")
+    @PreAuthorize("hasAuthority('CREATE') and (hasRole('ADMIN') or hasRole('VENTAS'))")
     @PostMapping("/createSale")
     public ResponseEntity<String> createSale(@RequestBody SaleManagementCreateDTO saleManagement) {
         return saleManagementService.createSaleWithSaleDetail(saleManagement.sale(), saleManagement.saleDetail());
     }
 
     @Operation(summary = "Obtener venta por ID", description = "Recupera una venta específica por su ID")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
     @GetMapping("/getById/{id}")
     public SaleDTO getSaleDTOById(@PathVariable Long id) throws LocalNotFoundException {
         return saleService.getSaleDTOById(id);

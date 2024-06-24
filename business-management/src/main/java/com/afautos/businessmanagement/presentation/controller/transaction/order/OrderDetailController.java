@@ -6,6 +6,7 @@ import com.afautos.businessmanagement.services.interfaces.transaction.order.IOrd
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,8 @@ public class OrderDetailController {
     }
 
     @Operation(summary = "Crear un nuevo detalle de pedido", description = "Crea un nuevo detalle de pedido en el sistema")
-    @PostMapping("/create")
+    @PreAuthorize("hasAuthority('CREATE') and (hasRole('ADMIN') or hasRole('LOGISTICA))")
+    @PostMapping("/createOrderDetail")
     public ResponseEntity<String> createOrderDetail(@RequestBody OrderDetailRequestDTO orderDetailRequestDTO) {
         return orderDetailService.createOrderDetail(orderDetailRequestDTO);
     }

@@ -1,5 +1,7 @@
 package com.afautos.businessmanagement.presentation.controller.authentication;
 
+import com.afautos.businessmanagement.presentation.dto.user.request.UserRequestDTO;
+import com.afautos.businessmanagement.services.interfaces.user.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/auth")
 public class AuthenticationController {
 
-    @Autowired
-    private IAuthenticationService authenticationService;
+    // Dependency injection
+    private final IAuthenticationService authenticationService;
+    private final IUserService userService;
+
+    public AuthenticationController(IAuthenticationService authenticationService, IUserService userService) {
+        this.authenticationService = authenticationService;
+        this.userService = userService;
+    }
 
     @Operation(summary = "Iniciar sesión", description = "Autentica a un usuario y devuelve un token de acceso")
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthLoginRequest authLoginRequest) {
         return authenticationService.login(authLoginRequest);
+    }
+
+    @Operation(summary = "Agregar un nuevo usuario", description = "Agrega un nuevo usuario al sistema")
+    @PostMapping("/register")
+    public ResponseEntity<String> addUser(@RequestBody UserRequestDTO user) {
+        return userService.addUser(user);
     }
 }

@@ -30,25 +30,28 @@ public class ProductController {
     }
 
     @Operation(summary = "Obtener todos los productos", description = "Recupera una lista de todos los productos disponibles en el sistema")
-    @PreAuthorize("hasAuthority('DELETE')")
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/getAll")
     public List<ProductDTO> getAllProducts() {
         return productService.getAllProd();
     }
 
     @Operation(summary = "Agregar un nuevo producto", description = "Agrega un nuevo producto al sistema")
+    @PreAuthorize("hasAuthority('CREATE') and hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<String> createProduct(@RequestBody ProductAddDTO productDTO) {
         return productService.addProd(productDTO);
     }
 
     @Operation(summary = "Eliminar un producto por ID", description = "Elimina un producto específico del sistema basado en su ID")
+    @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         return productService.delProd(id);
     }
 
     @Operation(summary = "Actualizar un producto", description = "Actualiza los detalles de un producto existente en el sistema basado en su ID")
+    @PreAuthorize("hasAuthority('UPDATE') and hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody ProductAddDTO productDTO) {
         return productService.updateProd(id, productDTO);
