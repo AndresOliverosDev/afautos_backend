@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.afautos.businessmanagement.error.LocalNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.afautos.businessmanagement.presentation.dto.user.response.CustomerResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,16 +26,17 @@ public class UserServiceImpl implements IUserService {
 
     // Dependency injection
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final DocTypeRepository docTypeRepository;
+    private final RolRepository rolRepository;
 
-    @Autowired
-    private DocTypeRepository docTypeRepository;
+    public UserServiceImpl(UserRepository userRepository, DocTypeRepository docTypeRepository, RolRepository rolRepository) {
+        this.userRepository = userRepository;
+        this.docTypeRepository = docTypeRepository;
+        this.rolRepository = rolRepository;
+    }
 
-    @Autowired
-    private RolRepository rolRepository;
-
-    // Methods
+    // Read
 
     @Override
     public UserEntity getUserEntityById(String id){
@@ -48,8 +49,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseEntity<String> addUser(UserRequestDTO userAdd) {
+    public List<CustomerResponseDTO> getAllCustomers() {
+        return userRepository.getAllCustomers();
+    }
 
+    @Override
+    public ResponseEntity<String> addUser(UserRequestDTO userAdd) {
         try {
 
             // Check if the user already exists
@@ -82,6 +87,7 @@ public class UserServiceImpl implements IUserService {
             userEntity.setPhone(userAdd.phone());
             userEntity.setName(userAdd.name());
             userEntity.setBirthday(userAdd.birthday());
+            userEntity.setStatus("ACTIVE");
             userEntity.setIsEnable(true);
             userEntity.setAccountNoExpired(true);
             userEntity.setAccountNoLocked(true);

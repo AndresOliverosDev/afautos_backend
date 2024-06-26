@@ -3,6 +3,7 @@ package com.afautos.businessmanagement.persistence.repository.user;
 import java.time.LocalDate;
 import java.util.*;
 
+import com.afautos.businessmanagement.presentation.dto.user.response.CustomerResponseDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +14,13 @@ import com.afautos.businessmanagement.presentation.dto.user.response.UserDTO;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
+
+    @Query("SELECT new com.afautos.businessmanagement.presentation.dto.user.response.CustomerResponseDTO(" +
+            "u.id, u.name, u.phone, u.email, u.birthday, u.docType.name) " +
+            "FROM UserEntity u " +
+            "JOIN u.roles r " +
+            "WHERE r.name = 'CLIENTE'")
+    List<CustomerResponseDTO> getAllCustomers();
 
     @Query("SELECT u.id, u.username, u.email, u.phone, u.name, u.birthday, u.docType.name, r.name " +
             "FROM UserEntity u " +

@@ -18,7 +18,7 @@ INSERT neighborhoods(neighborhood_name, city) VALUES("Kennedy", 1);
 
 /* User */
 INSERT users VALUES
-('1000253253', "andresDev",'passwordNoEncode', 'andres@example.com', '3223883144', 'Andres', 1, '2023-01-02', TRUE, TRUE, TRUE, TRUE);
+('1000253253', "andresDev",'passwordNoEncode', 'andres@example.com', '3223883144', 'Andres', "ACTIVE", 1, '2023-01-02', TRUE, TRUE, TRUE, TRUE);
 
 /* Address */
 INSERT address(ref, neighborhood, user) VALUES("Cra 119 #64-80", 1, "1000253253");

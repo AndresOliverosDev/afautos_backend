@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) UNIQUE NOT NULL,
     phone VARCHAR(10) UNIQUE NOT NULL,
     `names` VARCHAR(30) NOT NULL,
+    user_status VARCHAR(30) NOT NULL DEFAULT 'ACTIVE',
     doc_type TINYINT,
     birthday DATE NOT NULL,
     is_enable BOOLEAN,
