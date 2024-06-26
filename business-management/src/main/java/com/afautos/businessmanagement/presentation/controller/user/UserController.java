@@ -2,6 +2,7 @@ package com.afautos.businessmanagement.presentation.controller.user;
 
 import java.util.List;
 
+import com.afautos.businessmanagement.presentation.dto.user.response.CustomerResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,19 @@ public class UserController {
         this.userService = userService;
     }
 
+    // Read
+
+    @Operation(summary = "Obtener todos los clientes", description = "Recupera una lista de todos los clientes disponibles en el sistema")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
+    @GetMapping("/getAllCustomers")
+    public List<CustomerResponseDTO> getAllCustomers() {
+        return userService.getAllCustomers();
+    }
+
     @Operation(summary = "Obtener todos los usuarios", description = "Recupera una lista de todos los usuarios disponibles en el sistema")
-    @PreAuthorize("hasAuthority('READ')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
     @GetMapping("/getAllUsers")
     public List<UserDTO> getAllUser() {
         return userService.getAllUser();
-    }
-
-    @Operation(summary = "Agregar un nuevo usuario", description = "Agrega un nuevo usuario al sistema")
-    @PostMapping("/createUser")
-    public ResponseEntity<String> addUser(@RequestBody UserRequestDTO user) {
-        return userService.addUser(user);
     }
 }
