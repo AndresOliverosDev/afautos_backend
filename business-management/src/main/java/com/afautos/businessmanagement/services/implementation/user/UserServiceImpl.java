@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
+import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.presentation.dto.user.response.CustomerResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,12 +60,15 @@ public class UserServiceImpl implements IUserService {
             // Check if the user already exists
             UserEntity userIdDuplicated = userRepository.findById(userAdd.id()).orElse(null);
             if (userIdDuplicated != null) {
-                throw new RuntimeException("El usuario ya existe");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El usuario ya existe");
             }
 
             // Search Document Type
-            DocTypeEntity docTypeCurrent = docTypeRepository.findById(userAdd.docType()).orElseThrow(() ->
-                    new LocalNotFoundException("El tipo de documento con id " + userAdd.docType() + " no existe"));
+            DocTypeEntity docTypeCurrent = docTypeRepository.findById(userAdd.docType()).orElse(null);
+                if (docTypeCurrent == null) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                            .body("El tipo de documento con id " + userAdd.docType() + " no existe");
+                }
 
             // Search Roles
             Set<RolEntity> rolesCurrent = new HashSet<>();
@@ -74,7 +77,7 @@ public class UserServiceImpl implements IUserService {
                 if (rolEntity != null) {
                     rolesCurrent.add(rolEntity);
                 } else {
-                    throw new LocalNotFoundException("El rol con id " + rolId + " no existe");
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El rol con id " + rolId + " no existe");
                 }
             }
             String passwordEncoder = new BCryptPasswordEncoder().encode(userAdd.password());

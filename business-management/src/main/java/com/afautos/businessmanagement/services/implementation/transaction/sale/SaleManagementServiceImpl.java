@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
+import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
 import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleCreateDTO;
 import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO;
@@ -48,7 +48,7 @@ public class SaleManagementServiceImpl implements ISaleManagementService {
     }
 
     @Override
-    public SaleManagementDTO getById(Long saleId) throws LocalNotFoundException {
+    public SaleManagementDTO getById(Long saleId) throws NotFoundException {
 
         SaleDTO sale = saleService.getSaleDTOById(saleId);
 

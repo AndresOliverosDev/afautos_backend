@@ -14,6 +14,13 @@ import com.afautos.businessmanagement.presentation.dto.transaction.sale.response
 public interface SaleRepository extends JpaRepository<SaleEntity, Long>{
 
     @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO" +
+            "(s.id, s.saleDate, s.payMethod, s.totalPrice, s.address, s.customer.name)" +
+            "FROM SaleEntity s " +
+            "WHERE s.customer.id = :customerId"
+    )
+    List<SaleDTO> getSalesByCustomer(@Param("customerId") String customerId);
+
+    @Query("SELECT new com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO" +
     "(s.id, s.saleDate, s.payMethod, s.totalPrice, s.address, s.customer.name) FROM SaleEntity s"
     )
     List<SaleDTO> getAll();

@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
+import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleDTO;
 import com.afautos.businessmanagement.presentation.dto.transaction.sale.request.SaleManagementCreateDTO;
 import com.afautos.businessmanagement.presentation.dto.transaction.sale.response.SaleManagementDTO;
@@ -33,24 +33,33 @@ public class SaleController {
         this.saleManagementService = saleManagementService;
     }
 
+    // Read
+
+    @Operation(summary = "Obtener todas las ventas por cliente", description = "Recupera una lista de todas las ventas disponibles de un cliente especifico en el sistema")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
+    @GetMapping("getSalesByCustomer/{customerId}")
+    public ResponseEntity<?> getSalesByCustomer(@PathVariable String customerId) {
+        return saleService.getSalesByCustomer(customerId);
+    }
+
     @Operation(summary = "Obtener todas las ventas con detalles", description = "Recupera una lista de todas las ventas disponibles en el sistema con sus detalles")
     @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
-    @GetMapping("/getAllSales")
-    public List<SaleManagementDTO> getAllSalesDto() {
+    @GetMapping("/getAllSalesWithDetails")
+    public List<SaleManagementDTO> getAllSalesWithDetails() {
         return saleManagementService.getAllSalesDto();
     }
 
     @Operation(summary = "Obtener todas las ventas", description = "Recupera una lista de todas las ventas disponibles en el sistema")
     @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
-    @GetMapping("/getAll")
-    public List<SaleDTO> getAllSale() {
+    @GetMapping("/getAllSales")
+    public List<SaleDTO> getAllSales() {
         return saleService.getAll();
     }
 
     @Operation(summary = "Obtener venta por ID", description = "Recupera una venta específica por su ID")
     @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
-    @GetMapping("/getSaleById/{id}")
-    public SaleManagementDTO getAllSales(@PathVariable Long id) throws LocalNotFoundException{
+    @GetMapping("/getSaleWithDetailsById/{id}")
+    public SaleManagementDTO getAllSalesWithDetailsById(@PathVariable Long id) throws NotFoundException {
         return saleManagementService.getById(id);
     }
 
@@ -63,8 +72,8 @@ public class SaleController {
 
     @Operation(summary = "Obtener venta por ID", description = "Recupera una venta específica por su ID")
     @PreAuthorize("hasRole('ADMIN') or hasRole('VENTAS')")
-    @GetMapping("/getById/{id}")
-    public SaleDTO getSaleDTOById(@PathVariable Long id) throws LocalNotFoundException {
+    @GetMapping("/getSaleById/{id}")
+    public SaleDTO getSaleDTOById(@PathVariable Long id) throws NotFoundException {
         return saleService.getSaleDTOById(id);
     }
 

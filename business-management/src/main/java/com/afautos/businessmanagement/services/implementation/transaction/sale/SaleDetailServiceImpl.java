@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
+import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.persistence.entity.product.ProductEntity;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleDetailEntity;
 import com.afautos.businessmanagement.persistence.entity.transaction.sale.SaleEntity;
@@ -34,7 +34,7 @@ public class SaleDetailServiceImpl implements ISaleDetailService{
 
     // Get all details by sale
     @Override
-    public List<SaleDetailDTO> getAllBySale(Long idSale) throws LocalNotFoundException{
+    public List<SaleDetailDTO> getAllBySale(Long idSale) throws NotFoundException {
         List<SaleDetailDTO> saleDetail = saleDetailRepository.getAllBySale(idSale);
 
         return saleDetail;
@@ -48,7 +48,7 @@ public class SaleDetailServiceImpl implements ISaleDetailService{
         try {
             // Find sale and handle the exception
             SaleEntity sale = saleRepository.findById(saleId).orElseThrow(() ->
-                    new LocalNotFoundException("El pedido con el id " + saleId + " no existe" )
+                    new NotFoundException("El pedido con el id " + saleId + " no existe" )
             );
 
             List<SaleDetailEntity> saleDetailReturn = new ArrayList<>();
@@ -58,7 +58,7 @@ public class SaleDetailServiceImpl implements ISaleDetailService{
 
                 // Find product and handle exception
                 ProductEntity product = productRepository.findById(saleDetail.productId()).orElseThrow(() ->
-                    new LocalNotFoundException("El pedido con el id " + saleId + " no existe"));
+                    new NotFoundException("El pedido con el id " + saleId + " no existe"));
 
                 SaleDetailEntity saleDetailEntity = getSaleDetailEntity(saleDetail, product, sale);
 

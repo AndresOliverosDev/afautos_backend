@@ -1,33 +1,53 @@
 package com.afautos.businessmanagement.services.implementation.address;
 
+import com.afautos.businessmanagement.error.ResourceNotFoundException;
 import com.afautos.businessmanagement.persistence.entity.address.AddressEntity;
 import com.afautos.businessmanagement.persistence.entity.address.NeighborhoodEntity;
 import com.afautos.businessmanagement.persistence.entity.user.UserEntity;
 import com.afautos.businessmanagement.persistence.repository.address.AddressRepository;
 import com.afautos.businessmanagement.presentation.dto.address.request.AddressRequestDTO;
+import com.afautos.businessmanagement.presentation.dto.address.response.AddressSummaryResponseDTO;
 import com.afautos.businessmanagement.services.interfaces.address.IAddressService;
 import com.afautos.businessmanagement.services.interfaces.address.INeighborhoodService;
 import com.afautos.businessmanagement.services.interfaces.user.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class AddressServiceImpl implements IAddressService {
 
     // Dependency Injection
 
-    @Autowired
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
+    private final IUserService userService;
+    private final INeighborhoodService neighborhoodService;
 
-    @Autowired
-    private IUserService userService;
+    public AddressServiceImpl(AddressRepository addressRepository, IUserService userService, INeighborhoodService neighborhoodService) {
+        this.addressRepository = addressRepository;
+        this.userService = userService;
+        this.neighborhoodService = neighborhoodService;
+    }
 
-    @Autowired
-    private INeighborhoodService neighborhoodService;
+    // Business Model Methods Read
 
-    // Business Model Methods
+    @Override
+    public List<AddressSummaryResponseDTO> getAddressByUser(String userId) {
+        try {
+            List<AddressSummaryResponseDTO> addressSummaryResponseDTOS = addressRepository.getAddressByUser(userId);
+
+            if (addressSummaryResponseDTOS.isEmpty()) {
+                throw new ResourceNotFoundException("El usuario no tiene direcciones asociadas");
+            }
+
+            return addressSummaryResponseDTOS;
+        } catch (ResourceNotFoundException ex) {
+            return Collections.emptyList();
+        }
+    }
 
     @Override
     public ResponseEntity<String> createAddress(AddressRequestDTO addressRequestDTO) {

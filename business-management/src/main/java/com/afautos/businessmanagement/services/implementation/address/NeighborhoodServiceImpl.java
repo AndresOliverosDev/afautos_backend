@@ -1,6 +1,6 @@
 package com.afautos.businessmanagement.services.implementation.address;
 
-import com.afautos.businessmanagement.error.LocalNotFoundException;
+import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.persistence.entity.address.NeighborhoodEntity;
 import com.afautos.businessmanagement.persistence.repository.address.NeighborhoodRepository;
 import com.afautos.businessmanagement.services.interfaces.address.INeighborhoodService;
@@ -16,9 +16,9 @@ public class NeighborhoodServiceImpl implements INeighborhoodService {
 
     // Business Model Methods
     @Override
-    public NeighborhoodEntity getNeighborhoodById(Integer id) throws LocalNotFoundException {
+    public NeighborhoodEntity getNeighborhoodById(Integer id) throws NotFoundException {
         return neighborhoodRepository.findById(id).orElseThrow(() ->
-                new LocalNotFoundException("Barrio con el id " + id + " no existe")
+                new NotFoundException("Barrio con el id " + id + " no existe")
         );
     }
 }
