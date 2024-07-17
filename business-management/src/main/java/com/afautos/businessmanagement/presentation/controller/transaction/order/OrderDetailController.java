@@ -29,7 +29,7 @@ public class OrderDetailController {
     }
 
     @Operation(summary = "Crear un nuevo detalle de pedido", description = "Crea un nuevo detalle de pedido en el sistema")
-    @PreAuthorize("hasAuthority('CREATE') and (hasRole('ADMIN') or hasRole('LOGISTICA))")
+    @PreAuthorize("hasAuthority('CREATE') and (hasRole('ADMIN') or hasRole('LOGISTICA'))")
     @PostMapping("/createOrderDetail")
     public ResponseEntity<String> createOrderDetail(@RequestBody OrderDetailRequestDTO orderDetailRequestDTO) {
         return orderDetailService.createOrderDetail(orderDetailRequestDTO);

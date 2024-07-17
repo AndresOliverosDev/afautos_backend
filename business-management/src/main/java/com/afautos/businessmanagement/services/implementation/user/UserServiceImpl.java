@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.presentation.dto.user.response.CustomerResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
