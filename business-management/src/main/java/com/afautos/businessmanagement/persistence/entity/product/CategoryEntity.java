@@ -20,9 +20,9 @@ public class CategoryEntity {
     @Column(name = "cat_id")
     private Byte id;
     
-    @Column(name = "cat_name")
+    @Column(name = "cat_name", nullable = false)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String desc;
 }

@@ -2,10 +2,10 @@ package com.afautos.businessmanagement.presentation.controller.product;
 
 import java.util.List;
 
+import com.afautos.businessmanagement.presentation.dto.product.request.CategoryRequestDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.afautos.businessmanagement.presentation.dto.product.response.CategoryResponseDTO;
 import com.afautos.businessmanagement.services.interfaces.product.ICategoryService;
@@ -32,6 +32,15 @@ public class CategoryController {
     @GetMapping("/getAllCategories")
     public List<CategoryResponseDTO> getAllCategories() {
         return categoryService.getAllCategories();
+    }
+
+    // Create
+
+    @Operation(summary = "Crear una categoria", description = "Crear una nueva categoria en el sistema")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/createCategory")
+    public ResponseEntity<String> createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO) {
+        return categoryService.createCategory(categoryRequestDTO);
     }
     
 }

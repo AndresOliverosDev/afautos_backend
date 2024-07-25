@@ -2,6 +2,7 @@ package com.afautos.businessmanagement.services.interfaces.product;
 
 import java.util.List;
 
+import com.afautos.businessmanagement.persistence.entity.product.CategoryEntity;
 import org.springframework.http.ResponseEntity;
 
 import com.afautos.businessmanagement.presentation.dto.product.request.CategoryRequestDTO;
@@ -13,5 +14,5 @@ public interface ICategoryService {
     List<CategoryResponseDTO> getAllCategories();
 
     // Create
-    ResponseEntity<String> createCategory(CategoryRequestDTO categoryRequestDTO);
+    CategoryEntity createCategory(CategoryRequestDTO categoryRequestDTO);
 }

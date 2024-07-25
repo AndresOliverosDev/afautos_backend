@@ -1,7 +1,10 @@
 package com.afautos.businessmanagement.services.implementation.product;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.afautos.businessmanagement.persistence.entity.product.CategoryEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +34,25 @@ public class CategoryServiceImpl implements ICategoryService {
     // Create
 
     @Override
-    public ResponseEntity<String> createCategory(CategoryRequestDTO categoryRequestDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'createCategory'");
+    public CategoryEntity createCategory(CategoryRequestDTO categoryRequestDTO) {
+        try {
+
+            Optional<CategoryEntity> existingCategoryEntity = categoryRepository.findByName(categoryRequestDTO.name());
+
+            if (existingCategoryEntity.isPresent()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre de la categoría ya existe");
+            }
+
+            CategoryEntity categoryEntity = new CategoryEntity();
+            categoryEntity.setName(categoryRequestDTO.name());
+            categoryEntity.setDesc(categoryRequestDTO.description());
+            categoryRepository.save(categoryEntity);
+
+
+            return ResponseEntity.ok("La categoría se creo correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear la categoría");
+        }
     }
     
 }

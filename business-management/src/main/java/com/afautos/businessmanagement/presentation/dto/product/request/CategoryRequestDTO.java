@@ -1,8 +1,10 @@
 package com.afautos.businessmanagement.presentation.dto.product.request;
 
+import org.springframework.lang.NonNull;
+
 public record CategoryRequestDTO(
-    String name,
-    String description
+    @NonNull String name,
+    @NonNull String description
 ) {
     
 }

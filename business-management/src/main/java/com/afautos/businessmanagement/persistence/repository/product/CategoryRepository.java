@@ -1,6 +1,7 @@
 package com.afautos.businessmanagement.persistence.repository.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Byte>{
         "FROM CategoryEntity c"
     )
     List<CategoryResponseDTO> getAllCategories();
+
+    Optional<CategoryEntity> findByName(String name);
     
 }
