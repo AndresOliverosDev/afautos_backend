@@ -3,9 +3,10 @@ package com.afautos.businessmanagement.services.implementation.product;
 import java.util.List;
 import java.util.Optional;
 
+import com.afautos.businessmanagement.error.AttributeAlreadyExists;
+import com.afautos.businessmanagement.error.GeneralException;
+import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.persistence.entity.product.CategoryEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.afautos.businessmanagement.persistence.repository.product.CategoryRepository;
@@ -40,19 +41,36 @@ public class CategoryServiceImpl implements ICategoryService {
             Optional<CategoryEntity> existingCategoryEntity = categoryRepository.findByName(categoryRequestDTO.name());
 
             if (existingCategoryEntity.isPresent()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre de la categoría ya existe");
-            }
+                throw new AttributeAlreadyExists("Ya existe una categoría con el mismo nombre");
+            } 
 
             CategoryEntity categoryEntity = new CategoryEntity();
             categoryEntity.setName(categoryRequestDTO.name());
             categoryEntity.setDesc(categoryRequestDTO.description());
-            categoryRepository.save(categoryEntity);
+            return categoryRepository.save(categoryEntity);
 
-
-            return ResponseEntity.ok("La categoría se creo correctamente");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear la categoría");
+        } catch (GeneralException e) {
+            throw new GeneralException("Error al intentar crear una categoría");
         }
     }
     
+    // Delete
+
+    @Override
+    public CategoryEntity deleteCategory(Byte id) throws NotFoundException {
+
+        try {
+
+            Optional<CategoryEntity> categoryEntity = categoryRepository.findById(id);
+            if (categoryEntity.isEmpty()) {
+                throw new NotFoundException("La categoría con el id " + id + " no existe");
+            }
+
+            categoryRepository.deleteById(id);
+            return categoryEntity.get();
+            
+        } catch (GeneralException exception) {
+            throw new GeneralException("Error interno al intentar eliminar la categoría");
+        }
+    }
 }

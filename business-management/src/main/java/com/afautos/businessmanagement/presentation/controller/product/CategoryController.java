@@ -2,6 +2,8 @@ package com.afautos.businessmanagement.presentation.controller.product;
 
 import java.util.List;
 
+import com.afautos.businessmanagement.error.NotFoundException;
+import com.afautos.businessmanagement.persistence.entity.product.CategoryEntity;
 import com.afautos.businessmanagement.presentation.dto.product.request.CategoryRequestDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,8 +41,17 @@ public class CategoryController {
     @Operation(summary = "Crear una categoria", description = "Crear una nueva categoria en el sistema")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/createCategory")
-    public ResponseEntity<String> createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO) {
+    public CategoryEntity createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO) {
         return categoryService.createCategory(categoryRequestDTO);
+    }
+
+    // Delete
+
+    @Operation(summary = "Eliminar una categoria", description = "Eliminar una categoria del sistema")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/deleteCategory/{id}")
+    public CategoryEntity deleteCategory(@PathVariable Byte id) throws NotFoundException {
+        return categoryService.deleteCategory(id);
     }
     
 }
