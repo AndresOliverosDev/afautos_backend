@@ -49,7 +49,7 @@ public class CategoryController {
 
     @Operation(summary = "Eliminar una categoria", description = "Eliminar una categoria del sistema")
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/deleteCategory/{id}")
+    @DeleteMapping("/deleteCategory/{id}")
     public CategoryEntity deleteCategory(@PathVariable Byte id) throws NotFoundException {
         return categoryService.deleteCategory(id);
     }

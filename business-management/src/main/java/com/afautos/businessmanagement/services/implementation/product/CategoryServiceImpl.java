@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
             CategoryEntity categoryEntity = new CategoryEntity();
             categoryEntity.setName(categoryRequestDTO.name());
-            categoryEntity.setDesc(categoryRequestDTO.description());
+            categoryEntity.setDescription(categoryRequestDTO.description());
             return categoryRepository.save(categoryEntity);
 
         } catch (GeneralException e) {

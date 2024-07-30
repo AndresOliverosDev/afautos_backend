@@ -15,7 +15,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Byte>{
 
     // Read
     @Query("SELECT new com.afautos.businessmanagement.presentation.dto.product.response.CategoryResponseDTO" +
-        "(c.id, c.name, c.desc)" +
+        "(c.id, c.name, c.description)" +
         "FROM CategoryEntity c"
     )
     List<CategoryResponseDTO> getAllCategories();
