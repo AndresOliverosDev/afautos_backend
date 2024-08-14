@@ -53,5 +53,15 @@ public class CategoryController {
     public CategoryEntity deleteCategory(@PathVariable Byte id) throws NotFoundException {
         return categoryService.deleteCategory(id);
     }
+
+    // Update
+
+    @Operation(summary = "Actualizar una categoria", description = "Actualizar una categoria del sistema")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('LOGISTICA')")
+    @PutMapping("/updateCategory/{id}")
+    public CategoryEntity UpdateCategory(@PathVariable Byte id, @RequestBody CategoryRequestDTO categoryRequestDTO)
+            throws NotFoundException {
+        return categoryService.updateCategory(categoryRequestDTO, id);
+    }
     
 }

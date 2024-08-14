@@ -73,4 +73,25 @@ public class CategoryServiceImpl implements ICategoryService {
             throw new GeneralException("Error interno al intentar eliminar la categoría");
         }
     }
+
+    // Update
+
+    @Override
+    public CategoryEntity updateCategory(CategoryRequestDTO categoryRequestDTO, Byte id) throws NotFoundException {
+
+        try {
+            Optional<CategoryEntity> categoryEntity = categoryRepository.findById(id);
+            if (categoryEntity.isEmpty()) {
+                throw new NotFoundException("Categoria con el id " + id + " no existe");
+            }
+
+            categoryEntity.get().setName(categoryRequestDTO.name());
+            categoryEntity.get().setDescription(categoryRequestDTO.description());
+
+            return categoryRepository.save(categoryEntity.get()
+            );
+        } catch (GeneralException exception) {
+            throw new GeneralException("Error al actualizar la categoria");
+        }
+    }
 }

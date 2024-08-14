@@ -18,4 +18,7 @@ public interface ICategoryService {
 
     // Delete
     CategoryEntity deleteCategory(Byte id) throws NotFoundException;
+
+    // Update
+    CategoryEntity updateCategory(CategoryRequestDTO categoryRequestDTO, Byte id) throws NotFoundException;
 }
