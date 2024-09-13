@@ -18,7 +18,7 @@ public interface IProductService {
     // Find entities
     Optional<ProductEntity> getProductEntityById(Long productId);
 
-    ResponseEntity<String> addProd(ProductAddDTO productDTO);
+    ProductDTO addProd(ProductAddDTO productDTO);
 
     ResponseEntity<String> delProd(Long id);
 

@@ -3,6 +3,7 @@ package com.afautos.businessmanagement.services.implementation.product;
 import java.util.List;
 import java.util.Optional;
 
+import com.afautos.businessmanagement.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,24 +40,26 @@ public class ProductServiceImpl implements IProductService {
         return productRepository.getAll();
     }
 
-    //Find entities
+    // Find entities
     @Override
     public Optional<ProductEntity> getProductEntityById(Long productId) {
         return productRepository.findById(productId);
     }
 
     @Override
-    public ResponseEntity<String> addProd(ProductAddDTO productDTO) {
+    public ProductDTO addProd(ProductAddDTO productDTO) {
         try {
+            // Obtener marca y categoría
             BrandEntity brandCurrent = brandRepository.findById(productDTO.brand()).orElse(null);
             if (brandCurrent == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Marca no encontrada");
+                throw new NotFoundException("Marca no encontrada");
             }
             CategoryEntity categoryCurrent = categoryRepository.findById(productDTO.category()).orElse(null);
             if (categoryCurrent == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Categoría no encontrada");
+                throw new NotFoundException("Categoría no encontrada");
             }
 
+            // Crear entidad de producto
             ProductEntity productEntity = new ProductEntity();
             productEntity.setName(productDTO.name());
             productEntity.setDesc(productDTO.desc());
@@ -66,12 +69,29 @@ public class ProductServiceImpl implements IProductService {
             productEntity.setBrand(brandCurrent);
             productEntity.setCategory(categoryCurrent);
 
+            // Guardar en la base de datos
             productEntity = productRepository.save(productEntity);
 
-            return ResponseEntity.ok("El producto con el ID " + productEntity.getId() + " se creó exitosamente");
+            // Convertir la entidad guardada a DTO
+            return convertToDTO(productEntity);
+
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el producto");
+            throw new RuntimeException("Error al crear el producto");
         }
+    }
+
+    // Conversión de ProductEntity a ProductDTO
+    private ProductDTO convertToDTO(ProductEntity productEntity) {
+        return new ProductDTO(
+                productEntity.getId(),
+                productEntity.getName(),
+                productEntity.getDesc(),
+                productEntity.getQuantity(),
+                productEntity.getPrice(),
+                productEntity.getImage(),
+                productEntity.getBrand().getName(),
+                productEntity.getCategory().getName()
+        );
     }
 
     @Override
@@ -91,7 +111,7 @@ public class ProductServiceImpl implements IProductService {
     public ResponseEntity<String> updateProd(Long id, ProductAddDTO productDTO) {
         try {
             ProductEntity productCurrent = productRepository.findById(id).orElse(null);
-            if(productCurrent == null) {
+            if (productCurrent == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El id " + id + " no existe en la base de datos");
             }
 

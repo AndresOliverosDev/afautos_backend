@@ -40,7 +40,7 @@ public class ProductController {
     @Operation(summary = "Agregar un nuevo producto", description = "Agrega un nuevo producto al sistema")
     @PreAuthorize("hasAuthority('CREATE') and hasRole('ADMIN')")
     @PostMapping("/createProduct")
-    public ResponseEntity<String> createProduct(@RequestBody ProductAddDTO productDTO) {
+    public ProductDTO createProduct(@RequestBody ProductAddDTO productDTO) {
         return productService.addProd(productDTO);
     }
 

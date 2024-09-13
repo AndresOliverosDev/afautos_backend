@@ -7,7 +7,7 @@ public record ProductDTO(
     String name,
     String desc,
     Short quantity,
-    BigDecimal price,
+    BigDecimal   price,
     String image,
     String category,
     String brand
