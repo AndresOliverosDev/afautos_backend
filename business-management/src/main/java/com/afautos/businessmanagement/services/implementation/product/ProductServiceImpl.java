@@ -3,6 +3,8 @@ package com.afautos.businessmanagement.services.implementation.product;
 import java.util.List;
 import java.util.Optional;
 
+import com.afautos.businessmanagement.error.BadRequest;
+import com.afautos.businessmanagement.error.GeneralException;
 import com.afautos.businessmanagement.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +51,11 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductDTO addProd(ProductAddDTO productDTO) {
         try {
+
+            Optional<ProductEntity> productNameExist = productRepository.findByname(productDTO.name());
+            if (productNameExist.isPresent()) {
+                throw new BadRequest("El nombre " + productDTO.name() + " ya existe, use otro nombre");
+            }
             // Obtener marca y categoría
             BrandEntity brandCurrent = brandRepository.findById(productDTO.brand()).orElse(null);
             if (brandCurrent == null) {
@@ -75,8 +82,10 @@ public class ProductServiceImpl implements IProductService {
             // Convertir la entidad guardada a DTO
             return convertToDTO(productEntity);
 
-        } catch (Exception e) {
-            throw new RuntimeException("Error al crear el producto");
+        } catch (GeneralException e) {
+            throw new GeneralException("Error al crear el producto");
+        } catch (NotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

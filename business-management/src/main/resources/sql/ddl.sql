@@ -137,11 +137,11 @@ CREATE TABLE IF NOT EXISTS brands (
 
 CREATE TABLE IF NOT EXISTS products (
     prod_id BIGINT AUTO_INCREMENT,
-    prod_name VARCHAR(30),
+    prod_name VARCHAR(30) NOT NULL UNIQUE,
     `description` VARCHAR(255),
     quantity SMALLINT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255)  ,
     cat TINYINT,
     brand SMALLINT,
     PRIMARY KEY(prod_id),

@@ -1,6 +1,7 @@
 package com.afautos.businessmanagement.persistence.repository.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long>{
 
     @Query("SELECT new com.afautos.businessmanagement.presentation.dto.product.response.ProductDTO(p.id, p.name, p.desc, p.quantity, p.price, p.image, p.category.name, p.brand.name) FROM ProductEntity p")
     List<ProductDTO> getAll();
+
+    Optional<ProductEntity> findByname(String name);
 }
