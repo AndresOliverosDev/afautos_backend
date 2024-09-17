@@ -51,15 +51,6 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductDTO addProd(ProductAddDTO productDTO) {
         try {
-
-            Optional<ProductEntity> productNameExist = productRepository.findByname(productDTO.name());
-            if (productNameExist.isPresent()) {
-                if (!productNameExist.get().getIsDelete()) {
-                    throw new BadRequest("El nombre " + productDTO.name() + " ya existe, use otro nombre");
-                } else {
-                    Integer productId
-                }
-            }
             // Obtener marca y categoría
             BrandEntity brandCurrent = brandRepository.findById(productDTO.brand()).orElse(null);
             if (brandCurrent == null) {
@@ -68,6 +59,25 @@ public class ProductServiceImpl implements IProductService {
             CategoryEntity categoryCurrent = categoryRepository.findById(productDTO.category()).orElse(null);
             if (categoryCurrent == null) {
                 throw new NotFoundException("Categoría no encontrada");
+            }
+
+            Optional<ProductEntity> productNameExist = productRepository.findByname(productDTO.name());
+            if (productNameExist.isPresent()) {
+                if (productNameExist.get().getIsDelete()) {
+                    ProductEntity productExists = productNameExist.get();
+                    productExists.setIsDelete(false);
+                    productExists.setImage(productDTO.image());
+                    productExists.setDesc(productDTO.desc());
+                    productExists.setPrice(productDTO.price());
+                    productExists.setQuantity(productDTO.quantity());
+                    productExists.setBrand(brandCurrent);
+                    productExists.setCategory(categoryCurrent);
+
+                    ProductEntity updateProduct = productRepository.save(productExists);
+                    return convertToDTO(updateProduct);
+                } else {
+                    throw new BadRequest("El nombre " + productDTO.name() + " ya existe, use otro nombre");
+                }
             }
 
             // Crear entidad de producto
@@ -111,8 +121,14 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ResponseEntity<String> delProd(Long id) {
         try {
-            productRepository.deleteById(id);
+            Optional<ProductEntity> productCurrent = productRepository.findById(id);
+            if (productCurrent.isPresent()) {
+                ProductEntity productEntity = productCurrent.get();
+                productEntity.setIsDelete(true);
+                productRepository.save(productEntity);
+            }
             return ResponseEntity.ok("Producto eliminado correctamente");
+
         } catch (EntityNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El producto con el ID especificado no existe");
         } catch (Exception e) {
