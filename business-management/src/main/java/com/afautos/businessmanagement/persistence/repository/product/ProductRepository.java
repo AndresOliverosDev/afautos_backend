@@ -13,7 +13,10 @@ import com.afautos.businessmanagement.presentation.dto.product.response.ProductD
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long>{
 
-    @Query("SELECT new com.afautos.businessmanagement.presentation.dto.product.response.ProductDTO(p.id, p.name, p.desc, p.quantity, p.price, p.image, p.category.name, p.brand.name) FROM ProductEntity p")
+    @Query("SELECT new com.afautos.businessmanagement.presentation.dto.product.response.ProductDTO" +
+            "(p.id, p.name, p.desc, p.quantity, p.price, p.image, p.category.name, p.brand.name) " +
+            "FROM ProductEntity p " +
+            "WHERE p.isDelete = false")
     List<ProductDTO> getAll();
 
     Optional<ProductEntity> findByname(String name);

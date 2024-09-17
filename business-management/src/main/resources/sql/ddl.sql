@@ -141,9 +141,10 @@ CREATE TABLE IF NOT EXISTS products (
     `description` VARCHAR(255),
     quantity SMALLINT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    image_url VARCHAR(255)  ,
+    image_url VARCHAR(255),
     cat TINYINT,
     brand SMALLINT,
+    is_delete BOOLEAN DEFAULT FALSE,
     PRIMARY KEY(prod_id),
     CONSTRAINT fk_categories_prod FOREIGN KEY(cat) REFERENCES categories(cat_id),
     CONSTRAINT fk_brand_prod FOREIGN KEY(brand) REFERENCES brands(brand_id)

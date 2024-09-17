@@ -40,6 +40,9 @@ public class ProductEntity {
     @Column(name = "image_url")
     private String image;
 
+    @Column(name = "is_delete")
+    private Boolean isDelete;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cat")
     private CategoryEntity category;

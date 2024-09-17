@@ -54,7 +54,11 @@ public class ProductServiceImpl implements IProductService {
 
             Optional<ProductEntity> productNameExist = productRepository.findByname(productDTO.name());
             if (productNameExist.isPresent()) {
-                throw new BadRequest("El nombre " + productDTO.name() + " ya existe, use otro nombre");
+                if (!productNameExist.get().getIsDelete()) {
+                    throw new BadRequest("El nombre " + productDTO.name() + " ya existe, use otro nombre");
+                } else {
+                    Integer productId
+                }
             }
             // Obtener marca y categoría
             BrandEntity brandCurrent = brandRepository.findById(productDTO.brand()).orElse(null);
@@ -75,6 +79,7 @@ public class ProductServiceImpl implements IProductService {
             productEntity.setQuantity(productDTO.quantity());
             productEntity.setBrand(brandCurrent);
             productEntity.setCategory(categoryCurrent);
+            productEntity.setIsDelete(false);
 
             // Guardar en la base de datos
             productEntity = productRepository.save(productEntity);
