@@ -1,6 +1,7 @@
 package com.afautos.businessmanagement.services.implementation.transaction.sale;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -100,4 +101,5 @@ public class SaleServiceImpl implements ISaleService {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el valor total");
         }
     }
+
 }

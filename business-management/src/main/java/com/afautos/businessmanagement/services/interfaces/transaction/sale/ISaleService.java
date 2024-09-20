@@ -1,6 +1,7 @@
 package com.afautos.businessmanagement.services.interfaces.transaction.sale;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.afautos.businessmanagement.error.NotFoundException;
@@ -24,4 +25,5 @@ public interface ISaleService {
     SaleEntity createSale(SaleCreateDTO saleCreateDTO) throws NotFoundException;
 
     void updateTotalPrice(BigDecimal totalPrice, Long saleId);
+
 }
