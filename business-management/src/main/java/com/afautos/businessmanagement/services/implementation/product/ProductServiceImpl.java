@@ -42,6 +42,11 @@ public class ProductServiceImpl implements IProductService {
         return productRepository.getAll();
     }
 
+    @Override
+    public List<ProductDTO> getAllProductsByCategory(Byte categoryID) {
+        return productRepository.getProductsByCategory(categoryID);
+    }
+
     // Find entities
     @Override
     public Optional<ProductEntity> getProductEntityById(Long productId) {
@@ -61,7 +66,7 @@ public class ProductServiceImpl implements IProductService {
                 throw new NotFoundException("Categoría no encontrada");
             }
 
-            Optional<ProductEntity> productNameExist = productRepository.findByname(productDTO.name());
+            Optional<ProductEntity> productNameExist = productRepository.findByName(productDTO.name());
             if (productNameExist.isPresent()) {
                 if (productNameExist.get().getIsDelete()) {
                     ProductEntity productExists = productNameExist.get();

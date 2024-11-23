@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.afautos.businessmanagement.persistence.entity.product.BrandEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BrandRepository extends JpaRepository<BrandEntity, Short>{
@@ -16,6 +17,10 @@ public interface BrandRepository extends JpaRepository<BrandEntity, Short>{
             "(b.id, b.name)" +
             "FROM BrandEntity b")
     List<BrandResponseDTO> getAllBrands();
+
+    Optional<BrandEntity> findByName(String name);
+
+
 
     
 }

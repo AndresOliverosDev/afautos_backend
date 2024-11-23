@@ -15,6 +15,8 @@ public interface IProductService {
 
     List<ProductDTO> getAllProd();
 
+    List<ProductDTO> getAllProductsByCategory(Byte categoryID);
+
     // Find entities
     Optional<ProductEntity> getProductEntityById(Long productId);
 
@@ -23,4 +25,6 @@ public interface IProductService {
     ResponseEntity<String> delProd(Long id);
 
     ResponseEntity<String> updateProd(Long id, ProductAddDTO productDTO);
+
+
 }

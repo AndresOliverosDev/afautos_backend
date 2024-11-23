@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import com.afautos.businessmanagement.error.AttributeAlreadyExists;
+import com.afautos.businessmanagement.error.BadRequest;
 import com.afautos.businessmanagement.error.GeneralException;
 import com.afautos.businessmanagement.error.NotFoundException;
 import com.afautos.businessmanagement.persistence.entity.product.CategoryEntity;
+import com.afautos.businessmanagement.persistence.entity.product.ProductEntity;
+import com.afautos.businessmanagement.persistence.repository.product.ProductRepository;
+import com.afautos.businessmanagement.presentation.dto.product.response.ProductDTO;
+import com.afautos.businessmanagement.services.interfaces.product.IProductService;
 import org.springframework.stereotype.Service;
 
 import com.afautos.businessmanagement.persistence.repository.product.CategoryRepository;
@@ -18,11 +23,12 @@ import com.afautos.businessmanagement.services.interfaces.product.ICategoryServi
 public class CategoryServiceImpl implements ICategoryService {
 
     // Dependency injection
-
     private final CategoryRepository categoryRepository;
+    private final IProductService productService;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, IProductService productService) {
         this.categoryRepository = categoryRepository;
+        this.productService = productService;
     }
 
     // Read
@@ -37,7 +43,7 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public CategoryEntity createCategory(CategoryRequestDTO categoryRequestDTO) {
         try {
-
+            // Search in database if exists a category with same name
             Optional<CategoryEntity> existingCategoryEntity = categoryRepository.findByName(categoryRequestDTO.name());
 
             if (existingCategoryEntity.isPresent()) {
@@ -60,10 +66,15 @@ public class CategoryServiceImpl implements ICategoryService {
     public CategoryEntity deleteCategory(Byte id) throws NotFoundException {
 
         try {
-
+            // Verify if the category is existing
             Optional<CategoryEntity> categoryEntity = categoryRepository.findById(id);
             if (categoryEntity.isEmpty()) {
                 throw new NotFoundException("La categoría con el id " + id + " no existe");
+            }
+            // Verify if the category not is products
+            List<ProductDTO> products = productService.getAllProductsByCategory(id);
+            if (!products.isEmpty()) {
+                throw new BadRequest("La categoría tiene productos asociados");
             }
 
             categoryRepository.deleteById(id);
@@ -82,7 +93,7 @@ public class CategoryServiceImpl implements ICategoryService {
         try {
             Optional<CategoryEntity> categoryEntity = categoryRepository.findById(id);
             if (categoryEntity.isEmpty()) {
-                throw new NotFoundException("Categoria con el id " + id + " no existe");
+                throw new NotFoundException("Categoría con el id " + id + " no existe");
             }
 
             categoryEntity.get().setName(categoryRequestDTO.name());
@@ -91,7 +102,7 @@ public class CategoryServiceImpl implements ICategoryService {
             return categoryRepository.save(categoryEntity.get()
             );
         } catch (GeneralException exception) {
-            throw new GeneralException("Error al actualizar la categoria");
+            throw new GeneralException("Error al actualizar la categoría");
         }
     }
 }
