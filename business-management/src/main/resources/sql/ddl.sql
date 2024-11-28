@@ -177,23 +177,3 @@ CREATE TABLE IF NOT EXISTS order_details (
 
 
 );
-
-/* Products Entry */
-CREATE TABLE IF NOT EXISTS products_entry (
-    entry_id INTEGER AUTO_INCREMENT,
-    entry_date DATETIME NOT NULL,
-    observations VARCHAR(120),
-    supplier VARCHAR(15),
-    PRIMARY KEY(entry_id),
-    CONSTRAINT fk_users_entry FOREIGN KEY(supplier) REFERENCES users(user_id)
-);
-
-CREATE TABLE IF NOT EXISTS products_entry_detail (
-	detail_entry_id INTEGER AUTO_INCREMENT,
-    entry INTEGER,
-    product BIGINT,
-    quantity SMALLINT NOT NULL,
-    CONSTRAINT fk_entry_detail FOREIGN KEY(entry) REFERENCES products_entry(entry_id),
-    CONSTRAINT fk_products_detail FOREIGN KEY(product) REFERENCES products(prod_id),
-    PRIMARY KEY(detail_entry_id)
-);
